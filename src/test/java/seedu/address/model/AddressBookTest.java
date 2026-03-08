@@ -21,6 +21,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.reservation.Reservation;
 
 public class AddressBookTest {
 
@@ -99,6 +102,10 @@ public class AddressBookTest {
             this.persons.setAll(persons);
         }
 
+        @Override
+        public ObservableList<Reservation> getReservationList() {
+            return FXCollections.observableArrayList();
+        }
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;

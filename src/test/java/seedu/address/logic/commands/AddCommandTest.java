@@ -24,6 +24,12 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import java.util.Optional;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.reservation.Reservation;
 
 public class AddCommandTest {
 
@@ -123,6 +129,35 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean hasStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasReservableItem(String resourceId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConflictingReservation(Reservation reservation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Reservation> getConflictingReservation(Reservation reservation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addReservation(Reservation reservation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reservation> getReservationList() {
+            return FXCollections.observableArrayList();
+        }
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");

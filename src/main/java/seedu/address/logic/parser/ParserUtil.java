@@ -139,5 +139,5 @@ public class ParserUtil {
         return tagSet;
     }
 
-    private ParserUtil() {}
+
 }

@@ -37,6 +37,9 @@ public class ReserveCommand extends Command {
 
     private final Reservation reservationToAdd;
 
+    /**
+     * Creates a ReserveCommand to add the specified {@code Reservation}.
+     */
     public ReserveCommand(Reservation reservation) {
         requireNonNull(reservation);
         this.reservationToAdd = reservation;
@@ -75,6 +78,9 @@ public class ReserveCommand extends Command {
                 reservationToAdd.getFormattedEndDateTime()));
     }
 
+    /**
+     * Returns true if both reserve commands have the same reservation to add.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

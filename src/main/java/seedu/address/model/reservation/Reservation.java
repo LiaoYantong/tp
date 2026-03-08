@@ -86,10 +86,16 @@ public class Reservation {
                 && endDateTime.isAfter(other.startDateTime);
     }
 
+    /**
+     * Returns true if the given resource ID is valid.
+     */
     public static boolean isValidResourceId(String test) {
         return test != null && normalizeResourceId(test).matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the normalized resource ID in uppercase with surrounding whitespace removed.
+     */
     public static String normalizeResourceId(String resourceId) {
         requireNonNull(resourceId);
         return resourceId.trim().toUpperCase();

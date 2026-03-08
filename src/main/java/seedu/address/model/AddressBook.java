@@ -82,23 +82,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// reservation-level operations
-
+    /**
+     * Returns true if the given reservation conflicts with an existing reservation.
+     */
     public boolean hasConflictingReservation(Reservation reservation) {
         requireNonNull(reservation);
         return reservations.hasConflict(reservation);
     }
 
+    /**
+     * Returns the first conflicting reservation for the given reservation, if any.
+     */
     public Optional<Reservation> getConflictingReservation(Reservation reservation) {
         requireNonNull(reservation);
         return reservations.findConflictingReservation(reservation);
     }
 
+    /**
+     * Adds a reservation to the address book.
+     */
     public void addReservation(Reservation reservation) {
         reservations.add(reservation);
     }
 
-    //// util methods
+
 
     @Override
     public String toString() {
@@ -108,11 +115,17 @@ public class AddressBook implements ReadOnlyAddressBook {
                 .toString();
     }
 
+    /**
+     * Returns an unmodifiable view of the person list.
+     */
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns an unmodifiable view of the reservations list.
+     */
     @Override
     public ObservableList<Reservation> getReservationList() {
         return reservations.asUnmodifiableObservableList();

@@ -15,6 +15,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,8 +29,6 @@ import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.testutil.PersonBuilder;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 

@@ -17,6 +17,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
@@ -40,6 +41,9 @@ public class ModelManagerTest {
             LocalDateTime.of(2026, 3, 1, 14, 0),
             LocalDateTime.of(2026, 3, 1, 16, 0));
 
+    private static final IssueRecord HALL_TWO_ISSUE = new IssueRecord("Wilson-Evolution-Basketball-1",
+            new StudentId("a1234567a"),
+            LocalDateTime.of(2099, 3, 15, 17, 0));
     private ModelManager modelManager = new ModelManager();
 
     @Test
@@ -185,6 +189,52 @@ public class ModelManagerTest {
     @Test
     public void getReservationList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getReservationList().remove(0));
+    }
+
+    @Test
+    public void hasIssuedItem_nullItemId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasIssuedItem(null));
+    }
+
+    @Test
+    public void hasIssuedItem_itemNotIssued_returnsFalse() {
+        assertFalse(modelManager.hasIssuedItem("Wilson-Evolution-Basketball-1"));
+    }
+
+    @Test
+    public void hasIssuedItem_itemIssued_returnsTrue() {
+        modelManager.addIssueRecord(HALL_TWO_ISSUE);
+        assertTrue(modelManager.hasIssuedItem(HALL_TWO_ISSUE.getItemId()));
+    }
+
+    @Test
+    public void getIssueRecordByItemId_nullItemId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getIssueRecordByItemId(null));
+    }
+
+    @Test
+    public void getIssueRecordByItemId_itemNotIssued_returnsEmpty() {
+        assertEquals(Optional.empty(), modelManager.getIssueRecordByItemId("Wilson-Evolution-Basketball-1"));
+    }
+
+    @Test
+    public void addIssueRecord_nullIssueRecord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addIssueRecord(null));
+    }
+
+    @Test
+    public void hasIssuableItem_nullItemId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasIssuableItem(null));
+    }
+
+    @Test
+    public void hasIssuableItem_validItem_returnsTrue() {
+        assertTrue(modelManager.hasIssuableItem("Wilson-Evolution-Basketball-1"));
+    }
+
+    @Test
+    public void hasIssuableItem_invalidItem_returnsFalse() {
+        assertFalse(modelManager.hasIssuableItem("Invalid-Item"));
     }
 
     @Test

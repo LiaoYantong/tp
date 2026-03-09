@@ -9,10 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.testutil.PersonBuilder;
@@ -103,6 +101,29 @@ public class AddressBookTest {
                 + ", reservations=" + addressBook.getReservationList()
                 + ", issueRecords=" + addressBook.getIssueRecordList() + "}";
         assertEquals(expected, addressBook.toString());
+    }
+
+    @Test
+    public void hasIssuedItem_nullItemId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasIssuedItem(null));
+    }
+
+    @Test
+    public void hasIssuedItem_itemNotIssued_returnsFalse() {
+        assertFalse(addressBook.hasIssuedItem("Wilson-Evolution-Basketball-1"));
+    }
+
+    @Test
+    public void addIssueRecord_andGetIssueRecordByItemId_success() {
+        IssueRecord issueRecord = new IssueRecord("Wilson-Evolution-Basketball-1",
+                new StudentId("a1234567a"),
+                java.time.LocalDateTime.of(2099, 3, 15, 17, 0));
+
+        addressBook.addIssueRecord(issueRecord);
+
+        assertTrue(addressBook.hasIssuedItem("Wilson-Evolution-Basketball-1"));
+        assertEquals(Optional.of(issueRecord),
+                addressBook.getIssueRecordByItemId("Wilson-Evolution-Basketball-1"));
     }
 
     /**

@@ -67,15 +67,15 @@ public interface Model {
     ObservableList<IssueRecord> getIssueRecordList();
 
     boolean hasAliasableTarget(String targetId);
-    
+
     boolean hasAliasName(String aliasName);
-    
+
     Optional<AliasMapping> getAliasMappingByName(String aliasName);
-    
+
     void addAliasMapping(AliasMapping aliasMapping);
-    
+
     ObservableList<AliasMapping> getAliasMappingList();
-    
+
     String resolveAlias(String input);
 
 }

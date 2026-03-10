@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import seedu.address.model.alias.AliasMapping;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -167,5 +168,37 @@ public class AddressBookTest {
         public ObservableList<AliasMapping> getAliasMappingList() {
             return FXCollections.observableArrayList();
         }
+
+    }
+    @Test
+    public void hasAliasName_nullAliasName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasAliasName(null));
+    }
+
+    @Test
+    public void hasAliasName_aliasNotPresent_returnsFalse() {
+        assertFalse(addressBook.hasAliasName("b1"));
+    }
+
+    @Test
+    public void hasAliasName_aliasPresent_returnsTrue() {
+        AliasMapping aliasMapping = new AliasMapping("Wilson-Evolution-Basketball-1", "b1");
+        addressBook.addAliasMapping(aliasMapping);
+        assertTrue(addressBook.hasAliasName("b1"));
+    }
+
+    @Test
+    public void getAliasMappingByName_nullAliasName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getAliasMappingByName(null));
+    }
+
+    @Test
+    public void addAliasMapping_andGetAliasMappingByName_success() {
+        AliasMapping aliasMapping = new AliasMapping("Wilson-Evolution-Basketball-1", "b1");
+
+        addressBook.addAliasMapping(aliasMapping);
+
+        assertTrue(addressBook.hasAliasName("b1"));
+        assertEquals(Optional.of(aliasMapping), addressBook.getAliasMappingByName("b1"));
     }
 }

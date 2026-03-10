@@ -141,4 +141,19 @@ public class UniqueAliasMappingListTest {
         assertEquals(uniqueAliasMappingList.asUnmodifiableObservableList().toString(),
                 uniqueAliasMappingList.toString());
     }
+    @Test
+    public void hasAliasName_nullAliasName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueAliasMappingList.hasAliasName(null));
+    }
+
+    @Test
+    public void getAliasMappingByName_nullAliasName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueAliasMappingList.getAliasMappingByName(null));
+    }
+
+    @Test
+    public void iterator() {
+        uniqueAliasMappingList.add(BASKETBALL_ALIAS);
+        assertTrue(uniqueAliasMappingList.iterator().hasNext());
+    }
 }

@@ -65,4 +65,26 @@ public class AliasMappingTest {
         assertFalse(first.equals(null));
         assertFalse(first.equals(different));
     }
+    @Test
+    public void isValidTargetId_null_returnsFalse() {
+        assertFalse(AliasMapping.isValidTargetId(null));
+    }
+
+    @Test
+    public void isValidAliasName_null_returnsFalse() {
+        assertFalse(AliasMapping.isValidAliasName(null));
+    }
+
+    @Test
+    public void isSameAlias_nullAliasMapping_throwsNullPointerException() {
+        AliasMapping aliasMapping = new AliasMapping("Wilson-Evolution-Basketball-1", "b1");
+        assertThrows(NullPointerException.class, () -> aliasMapping.isSameAlias(null));
+    }
+
+    @Test
+    public void toStringMethod() {
+        AliasMapping aliasMapping = new AliasMapping("Wilson-Evolution-Basketball-1", "b1");
+        assertTrue(aliasMapping.toString().contains("WILSON-EVOLUTION-BASKETBALL-1"));
+        assertTrue(aliasMapping.toString().contains("b1"));
+    }
 }

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -86,4 +88,5 @@ public interface Model {
   
     ObservableList<IssueRecord> getIssueRecordList();
 
+    void addTag(RoomName roomName, Set<Tag> tags);
 }

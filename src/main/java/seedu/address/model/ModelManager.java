@@ -22,6 +22,7 @@ import seedu.address.model.room.Room;
 import seedu.address.model.room.UniqueRoomList;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -149,7 +150,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Room ================================================================================
-  
+
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
@@ -160,90 +161,91 @@ public class ModelManager implements Model {
     public void addRoom(Room room) {
         addressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
-      
+    }
+
     //=========== Reservation ================================================================================
 
     @Override
-    public boolean hasStudentId(StudentId studentId) {
+    public boolean hasStudentId (StudentId studentId) {
         requireNonNull(studentId);
         return addressBook.getPersonList().stream()
                 .anyMatch(person -> person.getStudentId().equals(studentId));
     }
 
     @Override
-    public boolean hasReservableItem(String resourceId) {
+    public boolean hasReservableItem (String resourceId){
         requireNonNull(resourceId);
         return VALID_RESOURCES.contains(Reservation.normalizeResourceId(resourceId));
     }
 
     @Override
-    public boolean hasConflictingReservation(Reservation reservation) {
+    public boolean hasConflictingReservation (Reservation reservation){
         requireNonNull(reservation);
         return addressBook.hasConflictingReservation(reservation);
     }
 
     @Override
-    public Optional<Reservation> getConflictingReservation(Reservation reservation) {
+    public Optional<Reservation> getConflictingReservation (Reservation reservation){
         requireNonNull(reservation);
         return addressBook.getConflictingReservation(reservation);
     }
 
     @Override
-    public void addReservation(Reservation reservation) {
+    public void addReservation (Reservation reservation){
         requireNonNull(reservation);
         addressBook.addReservation(reservation);
     }
 
     @Override
-    public ObservableList<Reservation> getReservationList() {
+    public ObservableList<Reservation> getReservationList () {
         return addressBook.getReservationList();
     }
 
 
     @Override
-    public boolean hasIssuableItem(String itemId) {
+    public boolean hasIssuableItem (String itemId){
         requireNonNull(itemId);
         return VALID_ITEMS.contains(IssueRecord.normalizeItemId(itemId));
     }
 
     @Override
-    public boolean hasIssuedItem(String itemId) {
+    public boolean hasIssuedItem (String itemId){
         requireNonNull(itemId);
         return addressBook.hasIssuedItem(itemId);
     }
 
     @Override
-    public Optional<IssueRecord> getIssueRecordByItemId(String itemId) {
+    public Optional<IssueRecord> getIssueRecordByItemId (String itemId){
         requireNonNull(itemId);
         return addressBook.getIssueRecordByItemId(itemId);
     }
 
     @Override
-    public void addIssueRecord(IssueRecord issueRecord) {
+    public void addIssueRecord (IssueRecord issueRecord){
         requireNonNull(issueRecord);
         addressBook.addIssueRecord(issueRecord);
     }
 
     @Override
-    public ObservableList<IssueRecord> getIssueRecordList() {
+    public ObservableList<IssueRecord> getIssueRecordList () {
         return addressBook.getIssueRecordList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPersonList () {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList (Predicate < Person > predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other){
         if (other == this) {
             return true;
         }
@@ -261,14 +263,25 @@ public class ModelManager implements Model {
     //=========== Filtered Room List Accessors =============================================================
 
     @Override
-    public ObservableList<Room> getFilteredRoomList() {
+    public ObservableList<Room> getFilteredRoomList () {
         return filteredRooms;
     }
 
     @Override
-    public void updateFilteredRoomList(Predicate<Room> predicate) {
+    public void updateFilteredRoomList (Predicate < Room > predicate) {
         requireNonNull(predicate);
         filteredRooms.setPredicate(predicate);
+    }
+
+    //============ Add tags =================================================================================
+    @Override
+    public void addTag(RoomName roomName, Set<Tag> tags) {
+        requireAllNonNull(roomName, tags);
+        Room room = addressBook.getRoomList().stream()
+                .filter(room -> room.getName().equals(roomName))
+                .findFirst();
+        room.addTags(tags);
+
     }
 
 }

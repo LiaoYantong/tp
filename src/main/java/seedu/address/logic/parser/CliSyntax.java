@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_FROM = new Prefix("f/");
     public static final Prefix PREFIX_TO = new Prefix("t/");
+    public static final Prefix PREFIX_ROOM = new Prefix("r/");
 
 }

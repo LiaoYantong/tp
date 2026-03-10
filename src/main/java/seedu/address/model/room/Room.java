@@ -1,5 +1,9 @@
 package seedu.address.model.room;
 
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -14,6 +18,7 @@ public class Room {
     // Data fields
     private final Location location;
     private final Status status;
+    private final Set<Tag> tagSet;
 
     /**
      * Every field must be present and not null.
@@ -23,6 +28,16 @@ public class Room {
         this.name = name;
         this.location = location;
         this.status = status;
+        this.tagSet = new Set<Tag>();
+    }
+
+    /**
+     * Placeholder or checking if room in list based on only roomname
+     * @param name
+     */
+    public Room(RoomName name) {
+        requireAllNonNull(name);
+        this.name = name;
     }
 
     public RoomName getName() { return name; }
@@ -38,6 +53,10 @@ public class Room {
             return true;
         }
         return otherRoom != null && otherRoom.getName().equals(getName());
+    }
+
+    public void addTags(Set<Tag> tags) {
+        this.tagSet.addAll(tags);
     }
 
     @Override

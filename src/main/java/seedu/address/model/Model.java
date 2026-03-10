@@ -88,5 +88,8 @@ public interface Model {
   
     ObservableList<IssueRecord> getIssueRecordList();
 
-    void addTag(RoomName roomName, Set<Tag> tags);
+    //============ Add tags =================================================================================
+    void addTag(RoomName roomName, Tag tag);
+
+    void deleteTag(RoomName roomName, Tag tag);
 }

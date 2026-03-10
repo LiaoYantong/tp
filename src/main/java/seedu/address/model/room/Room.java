@@ -2,6 +2,7 @@ package seedu.address.model.room;
 
 import seedu.address.model.tag.Tag;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -18,7 +19,7 @@ public class Room {
     // Data fields
     private final Location location;
     private final Status status;
-    private final Set<Tag> tagSet;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -28,7 +29,6 @@ public class Room {
         this.name = name;
         this.location = location;
         this.status = status;
-        this.tagSet = new Set<Tag>();
     }
 
     /**
@@ -55,8 +55,12 @@ public class Room {
         return otherRoom != null && otherRoom.getName().equals(getName());
     }
 
-    public void addTags(Set<Tag> tags) {
-        this.tagSet.addAll(tags);
+    public void addTag(Tag roomTag) {
+        this.tags.add(roomTag);
+    }
+
+    public void deleteTag(Tag roomTag) {
+        this.tags.remove(roomTag);
     }
 
     @Override

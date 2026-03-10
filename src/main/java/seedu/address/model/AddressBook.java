@@ -12,11 +12,10 @@ import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.issue.UniqueIssueRecordList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.UniqueRoomList;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.UniqueReservationList;
-
+import seedu.address.model.room.Room;
+import seedu.address.model.room.UniqueRoomList;
 
 /**
  * Wraps all data at the address-book level.
@@ -73,9 +72,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-      
         setRooms(newData.getRoomList());
-
         setReservations(newData.getReservationList());
         setIssueRecords(newData.getIssueRecordList());
 
@@ -117,6 +114,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    /**
+     * Checks if rooms are in roomList
+     * @param room
+     * @return
+     */
     public boolean hasRoom(Room room) {
         requireNonNull(room);
         return rooms.contains(room);
@@ -132,7 +134,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
-  
     /**
      * Returns true if the given reservation conflicts with an existing reservation.
      */

@@ -10,6 +10,7 @@ import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
+import seedu.address.model.room.Room;
 
 /**
  * The API of the Model component.
@@ -46,7 +47,11 @@ public interface Model {
 
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void addRoom(Room room);
 
+    boolean hasRoom(Room room);
+
+    ObservableList<Room> getFilteredRoomList();
 
     boolean hasStudentId(StudentId studentId);
 

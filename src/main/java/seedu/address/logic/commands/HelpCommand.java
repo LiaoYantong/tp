@@ -164,7 +164,8 @@ public class HelpCommand extends Command {
 
         entries.put("edit-s",
                 "Edits a student profile field using the student's matric number.\n"
-                        + "Format: edit-s MATRIC_NUMBER [n/NEW_NAME] [m/NEW_MATRIC_NUMBER] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL]\n"
+                        + "Format: edit-s MATRIC_NUMBER [n/NEW_NAME] "
+                        + "[m/NEW_MATRIC_NUMBER] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL]\n"
                         + "Example: edit-s a1234567a p/92345678");
 
         entries.put("delete-s",

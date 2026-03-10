@@ -210,6 +210,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.aliasMappings.setAliasMappings(aliasMappings);
     }
 
+    /**
+     * Returns true if has alias name
+     */
     public boolean hasAliasName(String aliasName) {
         requireNonNull(aliasName);
         return aliasMappings.hasAliasName(aliasName);

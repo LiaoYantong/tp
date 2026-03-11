@@ -1,15 +1,18 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedRoom.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_B;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.room.RoomName;
 
 public class JsonAdaptedRoomTest {
     private static final String INVALID_NAME = "R@oom";
+    private static final String INVALID_LOCATION = " ";
     private static final String INVALID_STATUS = "Unknown";
 
     private static final String VALID_NAME = ROOM_B.getName().toString();
@@ -32,5 +35,12 @@ public class JsonAdaptedRoomTest {
     public void toModelType_invalidStatus_throwsIllegalValueException() {
         JsonAdaptedRoom room = new JsonAdaptedRoom(VALID_NAME, VALID_LOCATION, INVALID_STATUS);
         assertThrows(IllegalValueException.class, room::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullName_throwsIllegalValueException() {
+        JsonAdaptedRoom room = new JsonAdaptedRoom(null, VALID_LOCATION, VALID_STATUS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomName.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, room::toModelType);
     }
 }

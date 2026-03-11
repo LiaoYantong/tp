@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalRooms.ROOM_A;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -187,6 +188,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasRoom_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoom(null));
+    }
+
+    @Test
+    public void hasRoom_roomNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasRoom(ROOM_A));
+    }
+
+    @Test
+    public void hasRoom_roomInAddressBook_returnsTrue() {
+        modelManager.addRoom(ROOM_A);
+        assertTrue(modelManager.hasRoom(ROOM_A));
+    }
+
+    @Test
+    public void getFilteredRoomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRoomList().remove(0));
     }
 
     @Test

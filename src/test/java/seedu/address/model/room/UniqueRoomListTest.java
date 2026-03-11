@@ -6,6 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ROOM_A;
 import static seedu.address.testutil.TypicalRooms.ROOM_B;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.room.exceptions.DuplicateRoomException;
@@ -53,6 +56,24 @@ public class UniqueRoomListTest {
     @Test
     public void setRoom_nullTargetRoom_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueRoomList.setRoom(null, ROOM_A));
+    }
+
+    @Test
+    public void setRooms_listWithDuplicateRooms_throwsDuplicateRoomException() {
+        List<Room> listWithDuplicates = Arrays.asList(ROOM_A, ROOM_A);
+        assertThrows(DuplicateRoomException.class, () -> uniqueRoomList.setRooms(listWithDuplicates));
+    }
+
+    @Test
+    public void setRoom_targetRoomNotInList_throwsRoomNotFoundException() {
+        assertThrows(RoomNotFoundException.class, () -> uniqueRoomList.setRoom(ROOM_A, ROOM_A));
+    }
+
+    @Test
+    public void setRoom_editedRoomHasNonUniqueIdentity_throwsDuplicateRoomException() {
+        uniqueRoomList.add(ROOM_A);
+        uniqueRoomList.add(ROOM_B);
+        assertThrows(DuplicateRoomException.class, () -> uniqueRoomList.setRoom(ROOM_A, ROOM_B));
     }
 
     @Test

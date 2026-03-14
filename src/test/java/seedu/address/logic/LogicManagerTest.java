@@ -22,8 +22,10 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListRoomCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -33,6 +35,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalRooms;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -172,5 +175,24 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_listRoom_success() throws Exception {
+        AddressBook typicalAddressBook = TypicalRooms.getTypicalAddressBook();
+        model.setAddressBook(typicalAddressBook);
+
+        String listRoomCommand = ListRoomCommand.COMMAND_WORD;
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandSuccess(listRoomCommand, ListRoomCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyRoomList_throwsCommandException() {
+        model.setAddressBook(new AddressBook());
+
+        String listRoomCommand = ListRoomCommand.COMMAND_WORD;
+        assertCommandFailure(listRoomCommand, CommandException.class, ListRoomCommand.MESSAGE_FAILURE);
     }
 }

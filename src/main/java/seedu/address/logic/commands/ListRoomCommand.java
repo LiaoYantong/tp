@@ -37,4 +37,15 @@ public class ListRoomCommand extends Command {
 
         return new CommandResult(sb.toString(), false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ListRoomCommand);
+    }
+
+    @Override
+    public int hashCode() {
+        return ListRoomCommand.class.hashCode();
+    }
 }

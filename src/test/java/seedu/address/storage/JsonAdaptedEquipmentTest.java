@@ -33,4 +33,16 @@ public class JsonAdaptedEquipmentTest {
         JsonAdaptedEquipment equipment = new JsonAdaptedEquipment(VALID_NAME, VALID_CATEGORY, INVALID_STATUS);
         assertThrows(IllegalValueException.class, equipment::toModelType);
     }
+
+    @Test
+    public void toModelType_nullName_throwsIllegalValueException() {
+        JsonAdaptedEquipment equipment = new JsonAdaptedEquipment(null, "Basketball", "Available");
+        assertThrows(IllegalValueException.class, equipment::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullCategory_throwsIllegalValueException() {
+        JsonAdaptedEquipment equipment = new JsonAdaptedEquipment("Wilson-Evolution", null, "Available");
+        assertThrows(IllegalValueException.class, equipment::toModelType);
+    }
 }

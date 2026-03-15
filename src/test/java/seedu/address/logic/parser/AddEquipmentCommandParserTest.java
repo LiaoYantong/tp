@@ -16,24 +16,33 @@ public class AddEquipmentCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Equipment expectedEquipment = new Equipment(new EquipmentName("Wilson"),
+        Equipment expectedEquipment = new Equipment(new EquipmentName("Wilson-Evolution"),
                 "Basketball", EquipmentStatus.AVAILABLE);
 
-        assertParseSuccess(parser, " n/Wilson c/Basketball s/Available",
+        assertParseSuccess(parser, " n/Wilson-Evolution c/Basketball s/Available",
                 new AddEquipmentCommand(expectedEquipment));
 
-        assertParseSuccess(parser, " n/Wilson c/Basketball s/aVaIlAbLe",
+        assertParseSuccess(parser, " n/Wilson-Evolution c/Basketball s/aVaIlAbLe",
                 new AddEquipmentCommand(expectedEquipment));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddEquipmentCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEquipmentCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, " c/Basketball", expectedMessage);
 
         assertParseFailure(parser, " n/Wilson", expectedMessage);
+
+        assertParseFailure(parser, " some preamble n/Wilson c/Basketball", expectedMessage);
+    }
+
+    @Test
+    public void parse_optionalStatusMissing_success() {
+        // Status should default to AVAILABLE if s/ is missing
+        Equipment expectedEquipment = new Equipment(new EquipmentName("Wilson-Evolution"),
+                "Basketball", EquipmentStatus.AVAILABLE);
+        assertParseSuccess(parser, " n/Wilson-Evolution c/Basketball", new AddEquipmentCommand(expectedEquipment));
     }
 }
 

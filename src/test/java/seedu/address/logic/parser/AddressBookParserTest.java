@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEquipmentCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -25,6 +26,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.equipment.Equipment;
+import seedu.address.model.equipment.EquipmentName;
+import seedu.address.model.equipment.EquipmentStatus;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -112,5 +116,14 @@ public class AddressBookParserTest {
     public void parseCommand_listStudentCommand() throws Exception {
         assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD) instanceof ListStudentCommand);
         assertThrows(ParseException.class, () -> parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3"));
+    }
+
+    @Test
+    public void parseCommand_addEquipment() throws Exception {
+        Equipment equipment = new Equipment(new EquipmentName("Wilson-Evolution"),
+                "Basketball", EquipmentStatus.AVAILABLE);
+        AddEquipmentCommand command = (AddEquipmentCommand) parser.parseCommand(
+                AddEquipmentCommand.COMMAND_WORD + " n/Wilson-Evolution c/Basketball s/Available");
+        assertEquals(new AddEquipmentCommand(equipment), command);
     }
 }

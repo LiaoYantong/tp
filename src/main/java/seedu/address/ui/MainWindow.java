@@ -252,9 +252,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowEquipmentList()) {
                 handleShowEquipmentList();
-            }
-
-            if (commandResult.isShowRoomList()) {
+            } else if (commandResult.isShowRoomList()) {
                 handleShowRoomList();
             } else {
                 handleShowPersonList();

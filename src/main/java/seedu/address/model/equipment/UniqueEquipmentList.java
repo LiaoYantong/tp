@@ -3,6 +3,7 @@ package seedu.address.model.equipment;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,33 @@ public class UniqueEquipmentList implements Iterable<Equipment> {
             throw new DuplicateEquipmentException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not contain duplicate equipment.
+     */
+    public void setEquipments(List<Equipment> replacement) {
+        requireNonNull(replacement);
+        if (!equipmentsAreUnique(replacement)) {
+            throw new DuplicateEquipmentException();
+        }
+
+        internalList.setAll(replacement);
+    }
+
+    /**
+     * Returns true if {@code equipments} contains only unique equipment.
+     */
+    private boolean equipmentsAreUnique(List<Equipment> equipments) {
+        for (int i = 0; i < equipments.size() - 1; i++) {
+            for (int j = i + 1; j < equipments.size(); j++) {
+                if (equipments.get(i).isSameEquipment(equipments.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public ObservableList<Equipment> asUnmodifiableObservableList() {

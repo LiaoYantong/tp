@@ -131,7 +131,7 @@ public class AddressBookParser {
 
         case DeleteTagCommand.COMMAND_WORD:
             return new DeleteTagCommandParser().parse(arguments);
-            
+
         case FilterTagCommand.COMMAND_WORD:
             return new FilterTagCommandParser().parse(arguments);
 

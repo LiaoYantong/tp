@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;    
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.logic.commands.CheckStudentLoansCommand.MESSAGE_STUDENT_NOT_FOUND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +16,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.person.StudentId;
-import seedu.address.logic.commands.CheckStudentLoansCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 public class CheckStudentLoansCommandTest {
 
@@ -40,11 +37,9 @@ public class CheckStudentLoansCommandTest {
         model.addIssueRecord(activeLoan);
 
         CheckStudentLoansCommand command = new CheckStudentLoansCommand(aliceId);
-        
         CommandResult result = command.execute(model);
-
         String feedback = result.getFeedbackToUser();
-        
+
         // Assertions
         assertTrue(feedback.contains(ALICE.getName().toString()));
         assertTrue(feedback.contains("[BORROWED] MPSH-1"));
@@ -52,9 +47,7 @@ public class CheckStudentLoansCommandTest {
 
     @Test
     public void execute_studentNotFound_throwsCommandException() {
-    
         CheckStudentLoansCommand command = new CheckStudentLoansCommand(new StudentId("A9999999Z"));
-        
         assertCommandFailure(command, model, MESSAGE_STUDENT_NOT_FOUND);
     }
 }

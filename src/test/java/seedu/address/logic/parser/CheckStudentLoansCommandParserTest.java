@@ -17,11 +17,11 @@ public class CheckStudentLoansCommandParserTest {
     @Test
     public void parse_validArgs_returnsCheckStudentLoansCommand() {
         // Test standard valid input
-        assertParseSuccess(parser, VALID_STUDENT_ID, 
+        assertParseSuccess(parser, VALID_STUDENT_ID,
                 new CheckStudentLoansCommand(new StudentId(VALID_STUDENT_ID)));
 
         // Test case insensitivity and whitespace handling
-        assertParseSuccess(parser, "  A1234567A  ", 
+        assertParseSuccess(parser, "  A1234567A  ",
                 new CheckStudentLoansCommand(new StudentId(VALID_STUDENT_ID)));
     }
 
@@ -39,7 +39,7 @@ public class CheckStudentLoansCommandParserTest {
 
     @Test
     public void parse_emptyStudentId_failure() {
-        assertParseFailure(parser, "     ", 
+        assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CheckStudentLoansCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "",

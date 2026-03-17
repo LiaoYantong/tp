@@ -176,12 +176,14 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser,
-                INVALID_NAME_DESC + STUDENT_ID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                INVALID_NAME_DESC + STUDENT_ID_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid student id
         assertParseFailure(parser,
-                NAME_DESC_BOB + INVALID_STUDENT_ID_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                NAME_DESC_BOB + INVALID_STUDENT_ID_DESC + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 StudentId.MESSAGE_CONSTRAINTS);
 
         // invalid phone

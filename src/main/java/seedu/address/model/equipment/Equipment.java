@@ -2,14 +2,19 @@ package seedu.address.model.equipment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Taggable;
+
+
 /**
  * Represents a Equipment in the system.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Equipment {
+public class Equipment extends Taggable {
     private final EquipmentName name;
     private final String category;
     private final EquipmentStatus status;
+
 
     /**
      * Every field must be present and not null.
@@ -19,6 +24,16 @@ public class Equipment {
         this.name = name;
         this.category = category;
         this.status = status;
+    }
+
+    /**
+     * For checking a equipmentName is inside the equipmentList
+     * @param name A valid room name.
+     */
+    public Equipment(EquipmentName name) {
+        this.name = name;
+        this.category = "placeholder";
+        this.status = EquipmentStatus.java_parse("Available");
     }
 
     /**
@@ -63,6 +78,25 @@ public class Equipment {
                 && status.equals(otherEquipment.getStatus());
     }
 
+    /**
+     * Adds tag from tagList on Equipment and on TaggedEntries record
+     * @param tag A valid tag
+     */
+    public void addTag(Tag tag) {
+        tags.add(tag);
+        registerTag(this.getClass().getSimpleName(), this.getName().toString(), tag.toString());
+    }
+
+    /**
+     * Removes tag from tagList on Equipment and on TaggedEntries record
+     * @param otherTag A valid Tag
+     */
+    public void deleteTag(Tag otherTag) {
+        tags.removeIf(tag -> tag.equals(otherTag));
+        removeTag(this.getClass().getSimpleName(), this.getName().toString(), otherTag.toString());
+    }
+
+
     @Override
     public int hashCode() {
         return java.util.Objects.hash(name, category, status);
@@ -74,5 +108,10 @@ public class Equipment {
                 name.toString(),
                 category,
                 status.toString());
+    }
+
+    @Override
+    public String getNameString() {
+        return this.name.toString();
     }
 }

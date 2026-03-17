@@ -23,8 +23,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Taggable;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -170,6 +170,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteRoom(Room target) {
+        target.onDelete();
         addressBook.removeRoom(target);
     }
 
@@ -257,6 +258,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEquipment(Equipment target) {
+        target.onDelete();
         addressBook.removeEquipment(target);
         updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
     }
@@ -355,24 +357,52 @@ public class ModelManager implements Model {
 
     //============ Add tags ================================================================================
     @Override
-    public void addTag(RoomName roomName, Tag tag) {
-        requireAllNonNull(roomName, tag);
-        Room targetRoom = addressBook.getRoomList().stream()
-                .filter(room -> room.getName().equals(roomName))
-                .findFirst()
-                .orElse(null);
-        assert targetRoom != null;
-        targetRoom.addTag(tag);
+    public boolean hasTaggable(Taggable target) {
+        if (target instanceof Room targetRoom) {
+            return !hasRoom(targetRoom);
+        } else if (target instanceof Equipment targetEquipment) {
+            return !hasEquipment(targetEquipment);
+        } else {
+            return true;
+        }
+    }
+    @Override
+    public void addTag(Taggable target, Tag tag) {
+        requireAllNonNull(target, tag);
+        if (target instanceof Room room) {
+            Room targetRoom = addressBook.getRoomList().stream()
+                    .filter(r -> r.getName().equals(room.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new AssertionError("Room not found: " + room.getName()));
+            targetRoom.addTag(tag);
+        } else if (target instanceof Equipment equipment) {
+            Equipment targetEquipment = addressBook.getEquipmentList().stream()
+                    .filter(e -> e.getName().equals(equipment.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new AssertionError("Equipment not found: " + equipment.getName()));
+            targetEquipment.addTag(tag);
+        } else {
+            throw new AssertionError("Unknown Taggable type: " + target.getClass());
+        }
     }
 
     @Override
-    public void deleteTag(RoomName roomName, Tag tag) {
-        requireAllNonNull(roomName, tag);
-        Room targetRoom = addressBook.getRoomList().stream()
-                .filter(room -> room.getName().equals(roomName))
-                .findFirst()
-                .orElse(null);
-        assert targetRoom != null;
-        targetRoom.deleteTag(tag);
+    public void deleteTag(Taggable target, Tag tag) {
+        requireAllNonNull(target, tag);
+        if (target instanceof Room room) {
+            Room targetRoom = addressBook.getRoomList().stream()
+                    .filter(r -> r.getName().equals(room.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new AssertionError("Room not found: " + room.getName()));
+            targetRoom.deleteTag(tag);
+        } else if (target instanceof Equipment equipment) {
+            Equipment targetEquipment = addressBook.getEquipmentList().stream()
+                    .filter(e -> e.getName().equals(equipment.getName()))
+                    .findFirst()
+                    .orElseThrow(() -> new AssertionError("Equipment not found: " + equipment.getName()));
+            targetEquipment.deleteTag(tag);
+        } else {
+            throw new AssertionError("Unknown Taggable type: " + target.getClass());
+        }
     }
 }

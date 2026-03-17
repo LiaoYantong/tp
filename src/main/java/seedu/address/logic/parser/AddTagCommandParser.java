@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -8,6 +9,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.equipment.Equipment;
+import seedu.address.model.equipment.EquipmentName;
+import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomName;
 import seedu.address.model.tag.Tag;
 
@@ -29,23 +33,33 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
     public AddTagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_LOCATION, PREFIX_TAG);
+                        PREFIX_LOCATION, PREFIX_TAG, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_LOCATION, PREFIX_TAG)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
+        boolean hasLocation = arePrefixesPresent(argMultimap, PREFIX_LOCATION, PREFIX_TAG);
+        boolean hasEquipment = arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_TAG);
+
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_LOCATION, PREFIX_TAG);
+                PREFIX_LOCATION, PREFIX_TAG, PREFIX_CATEGORY);
 
+        //verify either location or equipment with tag
+        if ((!hasLocation && !hasEquipment) || (hasLocation && hasEquipment)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
 
-        RoomName roomName = ParserUtil.parseRoomName(argMultimap.getValue(PREFIX_LOCATION).get());
-        Tag roomTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        if (hasLocation) {
+            RoomName roomName = ParserUtil.parseRoomName(argMultimap.getValue(PREFIX_LOCATION).get());
+            Tag roomTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+            return new AddTagCommand(new Room(roomName), roomTag);
+        } else {
+            EquipmentName equipmentName = ParserUtil.parseEquipmentName(argMultimap.getValue(PREFIX_CATEGORY).get());
+            Tag equipmentTag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+            return new AddTagCommand(new Equipment(equipmentName), equipmentTag);
+        }
 
-
-        return new AddTagCommand(roomName, roomTag);
     }
 
     /**

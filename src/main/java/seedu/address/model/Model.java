@@ -13,8 +13,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
 import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Taggable;
 
 /**
  * The API of the Model component.
@@ -106,10 +106,6 @@ public interface Model {
 
     String resolveAlias(String input);
 
-    void addTag(RoomName roomName, Tag tag);
-
-    void deleteTag(RoomName roomName, Tag tag);
-
     boolean hasEquipment(Equipment equipment);
 
     void addEquipment(Equipment equipment);
@@ -119,4 +115,10 @@ public interface Model {
     ObservableList<Equipment> getFilteredEquipmentList();
 
     void updateFilteredEquipmentList(Predicate<Equipment> predicate);
+
+    boolean hasTaggable(Taggable target);
+
+    void addTag(Taggable target, Tag tag);
+
+    void deleteTag(Taggable target, Tag tag);
 }

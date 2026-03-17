@@ -13,10 +13,8 @@ import seedu.address.model.issue.IssueRecord;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.reservation.Reservation;
-import seedu.address.model.room.RoomName;
 import seedu.address.model.tag.Tag;
-
-
+import seedu.address.model.tag.Taggable;
 
 
 /**
@@ -181,14 +179,19 @@ public abstract class ModelStub implements Model {
 
     //============ Add tags =================================================================================
     @Override
-    public void addTag(RoomName roomName, Tag tag) {
+    public void addTag(Taggable target, Tag tag) {
         throw new AssertionError("This method should not be called.");
-    };
+    }
 
     @Override
-    public void deleteTag(RoomName roomName, Tag tag) {
+    public void deleteTag(Taggable target, Tag tag) {
         throw new AssertionError("This method should not be called.");
-    };
+    }
+
+    @Override
+    public boolean hasTaggable(Taggable target) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     //=========== Equipment =============================================================
 

@@ -52,13 +52,5 @@ public class RoomTest {
         assertFalse(ROOM_A.equals(editedRoomA));
     }
 
-    //    @Test
-    //    public void addTag() {
-    //        Room roomD = new RoomBuilder(ROOM_D).build();
-    //    }
-    //
-    //    @Test
-    //    public void deleteTag() {
-    //        Room roomD = new RoomBuilder(ROOM_D).build();
-    //    }
+
 }

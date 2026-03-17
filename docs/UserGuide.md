@@ -339,6 +339,24 @@ Duplicate handling:
 Possible errors: 
 * No matric number in the system.
 
+### Display all students : `list-s`
+
+To display a list of all registered borrowers in the system.
+
+Format: `list-s​`
+
+### Delete a student's profile : `delete-s`
+
+To permanently delete a borrower’s record from the system database.
+
+Format: `delete-s MATRIC_NUMBER​`
+
+Acceptable values: 
+* Matric number: Start with an alphabet followed by 7 digits and end with an alphabet.
+
+Possible errors:
+* No matric number in the system.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.

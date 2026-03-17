@@ -172,7 +172,7 @@ Outputs:
 * Failure
 ![addEquipmentFail.png](images/addEquipmentFail.png)
 
-Possible errors: 
+Possible errors:
 * Invalid command such as missing n/, c/, and s/ prefix
 
 ### View equipment inventory list : `list-e`
@@ -218,14 +218,13 @@ Examples:
 Outputs:
 * Success
   ![deleteEquipmentSuccess.png](images/deleteEquipmentSuccess.png)
-* Failure <br>
+* Failure
   ![deleteEquipmentFail.png](images/deleteEquipmentFail.png)
 
 Possible errors:
-* Attempt to delete an equipment that is out of the inventory index list. 
+* Attempt to delete an equipment that is out of the inventory index list.
 * Attempt to delete an equipment that is having a ‘Booked’ status.
 
---------------------------------------------------------------------------------------------------------------------
 ### Adding a room : `add-r`
 
 Adds a new facility or venue into the system.
@@ -297,7 +296,7 @@ Examples:
 Outputs:
 * Success
   ![deleteRoomSucces.png](images/deleteRoomSucces.png)
-* Failure <br>
+* Failure
   ![deleteRoomFail.png](images/deleteRoomFail.png)
 
 Possible errors:

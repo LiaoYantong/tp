@@ -51,11 +51,6 @@
     "status" : "Booked",
     "tags" : [ ]
   }, {
-    "name" : "Sport-Hall-2",
-    "location" : "University-Town",
-    "status" : "Available",
-    "tags" : [ ]
-  }, {
     "name" : "Outdoor-Basketball-Court",
     "location" : "Kent-Ridge",
     "status" : "Booked",
@@ -63,8 +58,19 @@
   }, {
     "name" : "Music-Room-1",
     "location" : "YIH",
-    "status" : "Booked",
-    "tags" : [ ]
+    "status" : "Booked"
+  }, {
+    "name" : "Outdoor-Volleyball-Court",
+    "location" : "Kent-Ridge",
+    "status" : "Booked"
+  }, {
+    "name" : "Sports-Hall-2",
+    "location" : "University-Town",
+    "status" : "Booked"
+  }, {
+    "name" : "Sport-Hall-2",
+    "location" : "University-Town",
+    "status" : "Booked"
   } ],
   "reservations" : [ ],
   "issueRecords" : [ {
@@ -88,11 +94,6 @@
     "status" : "Damaged",
     "tags" : [ ]
   }, {
-    "name" : "Spalding",
-    "category" : "Basketball",
-    "status" : "Booked",
-    "tags" : [ ]
-  }, {
     "name" : "Tchoukball-Frame",
     "category" : "Tchoukball",
     "status" : "Maintenance",
@@ -100,7 +101,14 @@
   }, {
     "name" : "Track-Stand",
     "category" : "Track-and-Field",
-    "status" : "Available",
-    "tags" : [ ]
+    "status" : "Available"
+  }, {
+    "name" : "Yonex-Astrox",
+    "category" : "Badminton",
+    "status" : "Booked"
+  }, {
+    "name" : "Li Ning",
+    "category" : "Badminton",
+    "status" : "Available"
   } ]
 }

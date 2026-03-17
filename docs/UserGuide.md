@@ -6,7 +6,11 @@ title: User Guide
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  * [Quick start](#quick-start)
+  * [Features](#features)
+  * [FAQ](#faq)
+  * [Known issues](#known-issues)
+  * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,10 +51,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John-Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John-Doe t/friend` or as `n/John-Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -141,6 +145,217 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding an equipment : `add-e`
+
+Adds a new piece of physical equipment into the inventory so it can be tracked and loaned.
+
+Format: `add-e n/NAME c/CATEGORY s/STATUS`
+
+Acceptable values:
+* Name: Alphanumeric characters and spaces. Cannot be empty. Multiple spaces between words are collapsed into a single space (e.g., John   Doe becomes John Doe). Case-sensitive for display.
+* Category: Single word alphabetic. Cannot be empty.
+* Status: Available, Booked, Maintenance, Damaged. Cannot be empty. Case-insensitive (e.g. available is accepted).
+* Parameters can be in any order.
+  e.g. if the command specifies n/NAME c/CATEGORY s/STATUS, c/CATEGORY n/NAME s/STATUS is also acceptable.
+
+Duplicate handling:
+* Case-insensitive for duplicate checking. If you have multiple equipment of the same name and category, it should be named with a number as “Basketball-1”, “Basketball-2”, etc.
+
+Examples:
+* `add-e n/Wilson-Evolution-Basketball c/Basketball s/Available`.
+* `add-e n/Yonex-Astrox c/Badminton s/Booked`.
+
+Outputs:
+* Success
+![addEquipmentSuccess.png](images/addEquipmentSuccess.png)
+* Failure
+![addEquipmentFail.png](images/addEquipmentFail.png)
+
+Possible errors:
+* Invalid command such as missing n/, c/, and s/ prefix
+
+### View equipment inventory list : `list-e`
+
+Displays a complete list of all equipment currently stored in the inventory, including their status and category.
+
+Format: `list-e`
+
+Acceptable values:
+* Only accepts `list-e`.
+
+Duplicate handling:
+* Not applicable for a view command.
+
+Examples:
+* `list-e`.
+
+Outputs:
+* Success
+  ![viewEquipmentListSuccess.png](images/viewEquipmentListSuccess.png)
+* Failure <br>
+  Inventory list has not been created. Please proceed to add equipment first.
+
+Possible errors:
+* Inventory list has not been created.
+* Any extra input after `list-e`, (e.g. `list-e Basketball`, `list-e 123` etc.) will be invalid command.
+
+### Delete equipment from inventory list : `delete-e`
+
+Deletes equipment from the inventory.
+
+Format: `delete-e INDEX`
+
+Acceptable values:
+* Index: Positive integer corresponding to the current displayed list from `list-e`.
+
+Duplicate handling:
+* Not applicable for a delete command.
+
+Examples:
+* `delete-e 7`.
+
+Outputs:
+* Success
+  ![deleteEquipmentSuccess.png](images/deleteEquipmentSuccess.png)
+* Failure
+  ![deleteEquipmentFail.png](images/deleteEquipmentFail.png)
+
+Possible errors:
+* Attempt to delete an equipment that is out of the inventory index list.
+* Attempt to delete an equipment that is having a ‘Booked’ status.
+
+### Adding a room : `add-r`
+
+Adds a new facility or venue into the system.
+
+Format: `add-r n/NAME l/LOCATION s/STATUS`
+
+Acceptable values:
+* Name and Category: Alphanumeric characters and spaces. Cannot be empty. Multiple spaces between words are collapsed into a single space (e.g., John   Doe becomes John Doe). Case-sensitive for display.
+* Status: Available, Booked, Maintenance. Cannot be empty. Case-insensitive (e.g. available is accepted).
+* Parameters can be in any order.
+  e.g. if the command specifies n/NAME l/LOCATION s/STATUS, l/LOCATION n/NAME s/STATUS is also acceptable.
+
+Duplicate handling:
+* Case-insensitive for duplicate checking. Only one physical "MPSH-1" exists, therefore duplicate names would cause booking conflicts and error.
+
+Examples:
+* `add-r n/MPSH-2 l/Sports-Centre s/Available`.
+* `add-r n/Sports-Hall-2 l/University-Town s/Booked`.
+
+Outputs:
+* Success
+  ![addRoomSuccess.png](images/addRoomSuccess.png)
+* Failure
+  ![addRoomFail.png](images/addRoomFail.png)
+
+Possible errors:
+* Invalid command such as missing n/, l/, and s/ prefix
+
+### View room list : `list-r`
+
+Displays a complete list of all facilities and rooms managed by the system, showing their location and status.
+
+Format: `list-r`
+
+Acceptable values:
+* Only accepts `list-r`.
+
+Duplicate handling:
+* Not applicable for a view command.
+
+Examples:
+* `list-r`.
+
+Outputs:
+* Success
+  ![viewRoomListSuccess.png](images/viewRoomListSuccess.png)
+* Failure <br>
+  Room list has not been created. Please proceed to add room first.
+
+Possible errors:
+* Room list has not been created.
+* Any extra input after `list-r`, (e.g, `list-r Sports-Hall`, `list-r YIH` etc.) will be invalid command.
+
+### Delete a room : `delete-r`
+
+Deletes a room equipment from the room list.
+
+Format: `delete-r INDEX`
+
+Acceptable values:
+* Index: Positive integer corresponding to the current displayed list.
+
+Duplicate handling:
+* Not applicable for a delete command.
+
+Examples:
+* `delete-r 3`.
+
+Outputs:
+* Success
+  ![deleteRoomSucces.png](images/deleteRoomSucces.png)
+* Failure
+  ![deleteRoomFail.png](images/deleteRoomFail.png)
+
+Possible errors:
+* Attempt to delete a room that is out of the room index list.
+* Attempt to delete a room that is having a ‘Booked’ status.
+
+### Add a new student profile : `add-s`
+
+Adds a new borrower in the database so they can begin borrowing items
+
+Format: `add-s n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL​`
+
+Examples:
+*  `add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu` Adds a new student with the name `John Doe`, matric number `A0123456B`, phone number `91234567` and email address `e0123456@u.nus.edu`.
+
+Acceptable values:
+* Name: Alphabets only, no special characters or numbers
+* Matric number: Start with an alphabet followed by 7 digits and end with an alphabet.
+* Phone number: 8 digits continuous number
+* Email: Valid email format such as `name@domain.com`
+
+Duplicate handling:
+* If matric number, phone number or email already exist in the system, the command will be rejected to prevent duplicate identity.
+
+### Check a student's loans : `check-s`
+
+To check the list of equipment or venues loaned to a student.
+
+Format: `check-s MATRIC_NUMBER​`
+
+Examples:
+* `check-s A0123456B`
+
+Acceptable values:
+* Matric numbers must start with an alphabet followed by 7 digits and end with an alphabet
+
+Duplicate handling:
+* The system searches by the unique matric number, so there is no risk of returning the wrong student's data.
+
+Possible errors: 
+* No matric number in the system.
+
+### Display all students : `list-s`
+
+To display a list of all registered borrowers in the system.
+
+Format: `list-s​`
+
+### Delete a student's profile : `delete-s`
+
+To permanently delete a borrower’s record from the system database.
+
+Format: `delete-s MATRIC_NUMBER​`
+
+Acceptable values: 
+* Matric number: Start with an alphabet followed by 7 digits and end with an alphabet.
+
+Possible errors:
+* No matric number in the system.
 
 ### Clearing all entries : `clear`
 

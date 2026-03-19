@@ -251,6 +251,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEquipmentName(Equipment equipment) {
+        requireNonNull(equipment);
+        return addressBook.hasEquipmentName(equipment);
+    }
+
+    @Override
     public void addEquipment(Equipment equipment) {
         addressBook.addEquipment(equipment);
         updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
@@ -361,7 +367,7 @@ public class ModelManager implements Model {
         if (target instanceof Room targetRoom) {
             return hasRoom(targetRoom);
         } else if (target instanceof Equipment targetEquipment) {
-            return hasEquipment(targetEquipment);
+            return hasEquipmentName(targetEquipment);
         } else {
             return false;
         }

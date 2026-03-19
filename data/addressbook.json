@@ -76,27 +76,21 @@
     "status" : "Booked",
     "tags" : [ ]
   } ],
-  "reservations" : [ {
-    "resourceId" : "HALL-2",
-    "studentId" : "a1234567a",
-    "startDateTime" : "2026-03-01 1400",
-    "endDateTime" : "2026-03-01 1600"
-  } ],
   "issueRecords" : [ {
     "itemId" : "WILSON-EVOLUTION-BASKETBALL-1",
     "studentId" : "a3456789c",
-    "dueDateTime" : "2030-03-25 1700"
+    "dueDateTime" : "2027-03-25 1700"
   }, {
     "itemId" : "MOLTEN-VOLLEYBALL",
     "studentId" : "a3456789c",
-    "dueDateTime" : "2030-03-18 1200"
+    "dueDateTime" : "2027-03-18 1200"
   } ],
   "aliasMappings" : [ ],
   "equipments" : [ {
     "name" : "Wilson-Evolution",
     "category" : "Basketball",
     "status" : "Available",
-    "tags" : [ ]
+    "tags" : [ "orange" ]
   }, {
     "name" : "Molten-Volleyball",
     "category" : "Volleyball",

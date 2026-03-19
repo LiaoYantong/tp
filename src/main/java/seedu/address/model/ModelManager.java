@@ -186,7 +186,15 @@ public class ModelManager implements Model {
     @Override
     public boolean hasReservableItem(String resourceId) {
         requireNonNull(resourceId);
-        return VALID_RESOURCES.contains(Reservation.normalizeResourceId(resourceId));
+        String resolvedResourceId = resolveAlias(resourceId);
+
+        boolean roomExists = addressBook.getRoomList().stream()
+                .anyMatch(room -> room.getName().fullName.equalsIgnoreCase(resolvedResourceId));
+
+        boolean equipmentExists = addressBook.getEquipmentList().stream()
+                .anyMatch(equipment -> equipment.getName().fullName.equalsIgnoreCase(resolvedResourceId));
+
+        return roomExists || equipmentExists;
     }
 
     @Override
@@ -216,7 +224,10 @@ public class ModelManager implements Model {
     @Override
     public boolean hasIssuableItem(String itemId) {
         requireNonNull(itemId);
-        return VALID_ITEMS.contains(IssueRecord.normalizeItemId(itemId));
+        String resolvedItemId = resolveAlias(itemId);
+
+        return addressBook.getEquipmentList().stream()
+                .anyMatch(equipment -> equipment.getName().fullName.equalsIgnoreCase(resolvedItemId));
     }
 
     @Override
@@ -248,6 +259,12 @@ public class ModelManager implements Model {
     public boolean hasEquipment(Equipment equipment) {
         requireNonNull(equipment);
         return addressBook.hasEquipment(equipment);
+    }
+
+    @Override
+    public boolean hasEquipmentName(Equipment equipment) {
+        requireNonNull(equipment);
+        return addressBook.hasEquipmentName(equipment);
     }
 
     @Override
@@ -359,11 +376,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTaggable(Taggable target) {
         if (target instanceof Room targetRoom) {
-            return !hasRoom(targetRoom);
+            return hasRoom(targetRoom);
         } else if (target instanceof Equipment targetEquipment) {
-            return !hasEquipment(targetEquipment);
+            return hasEquipmentName(targetEquipment);
         } else {
-            return true;
+            return false;
         }
     }
 

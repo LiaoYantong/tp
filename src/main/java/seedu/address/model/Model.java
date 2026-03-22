@@ -27,7 +27,7 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Equipment> PREDICATE_SHOW_ALL_EQUIPMENT = unused -> true;
+    Predicate<Equipment> PREDICATE_SHOW_ALL_EQUIPMENTS = unused -> true;
 
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
@@ -111,6 +111,8 @@ public interface Model {
     boolean hasEquipmentName(Equipment equipment);
 
     void addEquipment(Equipment equipment);
+
+    void setEquipment(Equipment target, Equipment editedEquipment);
 
     void deleteEquipment(Equipment target);
 

@@ -179,6 +179,15 @@ public class ParserUtil {
         return new EquipmentName(trimmedName);
     }
 
+    public static String parseCategory(String category) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
+        if (!trimmedCategory.matches("^[a-zA-Z0-9]+$")) {
+            throw new ParseException("Category should be a single alphanumeric word.");
+        }
+        return trimmedCategory;
+    }
+
     /**
      * Parses a {@code String status} into an {@code EquipmentStatus}.
      * Leading and trailing whitespaces will be trimmed.

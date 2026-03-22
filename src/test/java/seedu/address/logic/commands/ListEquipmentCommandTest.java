@@ -34,7 +34,7 @@ public class ListEquipmentCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        expectedModel.updateFilteredEquipmentList(Model.PREDICATE_SHOW_ALL_EQUIPMENT);
+        expectedModel.updateFilteredEquipmentList(Model.PREDICATE_SHOW_ALL_EQUIPMENTS);
 
         CommandResult expectedCommandResult = new CommandResult(
                 ListEquipmentCommand.MESSAGE_SUCCESS, false, false, false, true);

@@ -1,4 +1,44 @@
 package seedu.address.logic.parser;
 
-public class EditEquipmentCommandParser {
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditEquipmentCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+public class EditEquipmentCommandParser implements Parser<EditEquipmentCommand> {
+
+    public EditEquipmentCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CATEGORY, PREFIX_STATUS);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEquipmentCommand.MESSAGE_USAGE), pe);
+        }
+
+        EditEquipmentCommand.EditEquipmentDescriptor editEquipmentDescriptor = new EditEquipmentCommand.EditEquipmentDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editEquipmentDescriptor.setName(ParserUtil.parseEquipmentName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            editEquipmentDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            editEquipmentDescriptor.setStatus(ParserUtil.parseEquipmentStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+        }
+
+        if (!editEquipmentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditEquipmentCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditEquipmentCommand(index, editEquipmentDescriptor);
+    }
 }

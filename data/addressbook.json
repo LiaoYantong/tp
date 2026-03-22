@@ -76,6 +76,7 @@
     "status" : "Booked",
     "tags" : [ ]
   } ],
+  "reservations" : [ ],
   "issueRecords" : [ {
     "itemId" : "WILSON-EVOLUTION-BASKETBALL-1",
     "studentId" : "a3456789c",
@@ -99,7 +100,7 @@
   }, {
     "name" : "Tchoukball-Frame",
     "category" : "Tchoukball",
-    "status" : "Maintenance",
+    "status" : "Booked",
     "tags" : [ ]
   }, {
     "name" : "Track-Stand",

@@ -12,7 +12,7 @@ class AddStudentCommand {
     + {static} MESSAGE_SUCCESS: String
     + {static} MESSAGE_DUPLICATE_STUDENT: String
     - toAdd: Person
-    
+
     + AddStudentCommand(student: Person)
     + execute(model: Model): CommandResult
     + equals(other: Object): boolean

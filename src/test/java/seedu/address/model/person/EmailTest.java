@@ -20,6 +20,12 @@ public class EmailTest {
     }
 
     @Test
+    public void isValidEmail_caseInsensitive() {
+        assertTrue(Email.isValidEmail("PETERJACK@EXAMPLE.COM")); // All caps
+        assertTrue(Email.isValidEmail("peterjack@Example.Com")); // Mixed case domain
+    }
+
+    @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
@@ -29,12 +35,18 @@ public class EmailTest {
         assertFalse(Email.isValidEmail(" ")); // spaces only
 
         // missing parts
+        assertFalse(Email.isValidEmail("@")); // Only @
+        assertFalse(Email.isValidEmail("user@.com")); // Missing domain name before period
+        assertFalse(Email.isValidEmail("user@domain."));
         assertFalse(Email.isValidEmail("@example.com")); // missing local part
         assertFalse(Email.isValidEmail("peterjackexample.com")); // missing '@' symbol
         assertFalse(Email.isValidEmail("peterjack@")); // missing domain name
 
         // invalid parts
         assertFalse(Email.isValidEmail("peterjack@-")); // invalid domain name
+        assertFalse(Email.isValidEmail(".user@domain.com")); // Local part starts with dot
+        assertFalse(Email.isValidEmail("user.@domain.com")); // Local part ends with dot
+        assertFalse(Email.isValidEmail("user@domain.")); // Missing TLD after period
         assertFalse(Email.isValidEmail("peterjack@exam_ple.com")); // underscore in domain name
         assertFalse(Email.isValidEmail("peter jack@example.com")); // spaces in local part
         assertFalse(Email.isValidEmail("peterjack@exam ple.com")); // spaces in domain name

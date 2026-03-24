@@ -160,7 +160,6 @@ Acceptable values:
     * Category: Single word alphanumeric.
     * Status: Available, Booked, Maintenance, Damaged.
 
-
 Duplicate handling:
 * Case-insensitive for duplicate checking. If you have multiple equipment of the same name and category,
   it should be named with a number as “Basketball-1”, “Basketball-2”, etc.
@@ -171,7 +170,7 @@ Examples:
 Outputs:
 * Success
   ![editEquipmentSuccess.png](images/editEquipmentSuccess.png)
-  * Failure
+* Failure
   ![editEquipmentFail.png](images/editEquipmentFail.png)
 
 Possible errors:
@@ -257,6 +256,35 @@ Outputs:
 Possible errors:
 * Attempt to delete a room that is out of the room index list.
 * Attempt to delete a room that is having a ‘Booked’ status.
+
+#### Edit room from room list : `edit-r`
+
+Edit details for existing room from the room list.
+
+Format: `edit-r INDEX [n/NAME] [c/LOCATION] [s/STATUS]`
+
+Acceptable values:
+* Index: Positive integer corresponding to the current displayed list from `list-r`.
+* (With at least one of the fields)
+  * Name: Alphanumeric characters and spaces.
+  * Location: Alphanumeric characters and spaces.
+  * Status: Available, Booked, Maintenance.
+
+Duplicate handling:
+* Name case-insensitive for duplicate checking.
+
+Examples:
+* `edit-r 3 n/Tennis-Court s/Booked`.
+
+Outputs:
+* Success
+  ![editRoomSuccess.png](images/editRoomSuccess.png)
+* Failure
+  ![editRoomFail.png](images/editRoomFail.png)
+
+Possible errors:
+* Attempt to edit a room that is not in the room list.
+* Wrong command given that is not of the n/, l/, and s/ prefix.
 
 ### 2.3 Borrower Management
 

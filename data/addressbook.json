@@ -41,9 +41,9 @@
     "status" : "Booked",
     "tags" : [ ]
   }, {
-    "name" : "Outdoor-Tennis-Court",
+    "name" : "Tennis-Court",
     "location" : "Kent-Ridge",
-    "status" : "Available",
+    "status" : "Booked",
     "tags" : [ ]
   }, {
     "name" : "MPSH-3",

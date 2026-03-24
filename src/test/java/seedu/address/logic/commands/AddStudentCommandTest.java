@@ -128,4 +128,14 @@ public class AddStudentCommandTest {
             return new AddressBook();
         }
     }
+
+    @Test
+    public void toStringMethod() {
+        Person alice = new PersonBuilder().withName("Alice").build();
+        AddStudentCommand addStudentCommand = new AddStudentCommand(alice);
+
+        String expected = AddStudentCommand.class.getCanonicalName() + "{toAdd=" + alice + "}";
+
+        assertEquals(expected, addStudentCommand.toString());
+    }
 }

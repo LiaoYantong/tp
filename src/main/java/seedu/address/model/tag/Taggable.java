@@ -45,4 +45,16 @@ public abstract class Taggable {
     public abstract void addTag(Tag tag);
 
     public abstract void deleteTag(Tag otherTag);
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Taggable)) {
+            return false;
+        }
+        Taggable otherTaggable = (Taggable) other;
+        return getNameString().equals(otherTaggable.getNameString());
+    }
 }

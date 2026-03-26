@@ -371,7 +371,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
 Acceptable values:
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer `1, 2, 3, …​`
 * Matric number is not modifiable.
-* The order does not matter (e.g., `p/` can come before `n`).
+* The order does not matter (e.g., `p/` can come before `n/`).
 * (With at least one of the fields)
     * Name: Alphabets and spaces only. No special characters or numbers.
     * Phone: 8-digit continuous Singaporean mobile number.

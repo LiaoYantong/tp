@@ -491,6 +491,8 @@ Returns an issued equipment item back to the inventory.
 **Failure**
 - item is not currently issued
 - invalid command format
+`Error:
+No matching reservation found for Hall-2 by a1234567a from 2099-03-15 0900 to 2099-03-15 1100`
 
 **Notes**
 - aliases are supported, so if `b1` is an alias for `Wilson-Evolution-Basketball-1`, then `return b1` also works
@@ -510,9 +512,12 @@ Cancels an existing reservation.
 
 **Success**
 
-Reservation cancelled:
-Reserved HALL-2 by Student a1234567a from 2099-03-15 0900 to 2099-03-15 1100
+`Reservation cancelled:
+Reserved HALL-2 by Student a1234567a from 2099-03-15 0900 to 2099-03-15 1100`
 
+**Failure**
+`Error:
+Wilson-Evolution-Basketball-1 is not currently issued.`
 ### 2.5 Tag & Filter:
 
 #### Tagging an item or room: `tag`

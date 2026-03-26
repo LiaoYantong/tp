@@ -366,7 +366,7 @@ Possible errors:
 
 Edits an existing student's details in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
+Format: `edit-s INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
 
 Acceptable values:
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer `1, 2, 3, …​`
@@ -378,7 +378,7 @@ Acceptable values:
     * Email: Valid email format (e.g., `e0123456@u.nus.edu`).
 
 Examples:
-* `edit-e 2 n/Tom p/91234561 e/e1234567@u.nus.edu`.
+* `edit-s 2 n/Tom p/91234561 e/e1234567@u.nus.edu`.
 
 
 ### 2.4 Loans & Reservations
@@ -664,14 +664,16 @@ Action | Format, Examples
 **Add Equipment** | `add-e n/NAME c/CATEGORY s/STATUS` <br> e.g., `add-e n/Wilson-Evolution-Basketball c/Basketball s/Available`
 **List Equipment** | `list-e`
 **Delete Equipment**| `delete-e INDEX` <br> e.g., `delete-e 3`
+**Edit Equipment** | `edit-e INDEX [n/NAME] [c/CATEGORY] [s/STATUS]` <br> e.g. `edit-e 6 s/Booked`
 **Add Room** | `add-r n/NAME l/LOCATION s/STATUS` <br> e.g., `add-r n/MPSH-2 l/Sports-Centre s/Available`
 **List Rooms** | `list-r`
 **Delete Room** | `delete-r INDEX` <br> e.g., `delete-r 1`
+**Edit Room** | `edit-r INDEX [n/NAME] [c/LOCATION] [s/STATUS]` <br> e.g. `edit-r 3 n/Tennis-Court s/Booked`
 **Add Student** | `add-s n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu`
 **Check Loans** | `check-s MATRIC_NUMBER` <br> e.g., `check-s A0123456B`
 **List Students** | `list-s`
 **Delete Student** | `delete-s MATRIC_NUMBER` <br> e.g., `delete-s A0123456B`
-**Edit Student** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]` <br> e.g. `edit-e 2 n/Tom p/91234561 e/e1234567@u.nus.edu`
+**Edit Student** | `edit-s INDEX [n/NAME] [p/PHONE] [e/EMAIL]` <br> e.g. `edit-s 2 n/Tom p/91234561 e/e1234567@u.nus.edu`
 **Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME t/END_DATE_TIME` <br> e.g., `reserve Hall-2 a1234567a f/2026-03-01 1400 t/2026-03-01 1600`
 **Issue** | `issue ITEM_ID STUDENT_ID d/DUE_DATE_TIME` <br> e.g., `issue Wilson-Basketball-1 A1203763K d/2026-03-05 1700`
 **Tag** | `tag [c/EQUIPMENT_NAME | l/ROOM_NAME] t/TAG` <br> e.g., `tag c/Basketball-1 t/spoilt`

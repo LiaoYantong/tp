@@ -48,13 +48,29 @@ public class FilterTagCommand extends Command {
         if (targetType.equals("Room")) {
             model.updateFilteredRoomList(room -> room.getTags().contains(targetTag));
             return new CommandResult(String.format(MESSAGE_SUCCESS, targetType, targetTag),
-                    false, false, true, false);
+                    false, false, false, true, false);
         } else if (targetType.equals("Equipment")) {
             model.updateFilteredEquipmentList(equipment -> equipment.getTags().contains(targetTag));
             return new CommandResult(String.format(MESSAGE_SUCCESS, targetType, targetTag),
-                    false, false, false, true);
+                    false, false, false, false, true);
         } else {
             throw new CommandException(MESSAGE_ERROR);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterTagCommand)) {
+            return false;
+        }
+
+        FilterTagCommand otherFilterTagCommand = (FilterTagCommand) other;
+        return targetType.equals(otherFilterTagCommand.targetType)
+                && targetTag.equals(otherFilterTagCommand.targetTag);
     }
 }

@@ -18,7 +18,7 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an existing room to the system. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an existing room/equipment to the system. "
             + "Parameters: "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_LOCATION + "MPSH-1 "
@@ -50,12 +50,28 @@ public class AddTagCommand extends Command {
         requireNonNull(model);
 
         //Ensure that target is inside storage
-        if (model.hasTaggable(target)) {
-            throw new CommandException(MESSAGE_ERROR);
+        if (!model.hasTaggable(target)) {
+            throw new CommandException(MESSAGE_ERROR + "cannot find");
         }
 
         model.addTag(target, tag);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tag, target.getNameString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddTagCommand)) {
+            return false;
+        }
+
+        AddTagCommand otherAddTagCommand = (AddTagCommand) other;
+        return target.equals(otherAddTagCommand.target)
+                && tag.equals(otherAddTagCommand.tag);
     }
 }
 

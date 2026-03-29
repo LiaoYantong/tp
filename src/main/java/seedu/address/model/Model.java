@@ -27,7 +27,7 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Equipment> PREDICATE_SHOW_ALL_EQUIPMENT = unused -> true;
+    Predicate<Equipment> PREDICATE_SHOW_ALL_EQUIPMENTS = unused -> true;
 
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
@@ -57,25 +57,17 @@ public interface Model {
 
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    default void addRoom(Room room) {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
+    void addRoom(Room room);
 
-    default boolean hasRoom(Room room) {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
+    boolean hasRoom(Room room);
 
-    default void deleteRoom(Room target) {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
+    void setRoom(Room target, Room editedRoom);
 
-    default ObservableList<Room> getFilteredRoomList() {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
+    void deleteRoom(Room target);
 
-    default void updateFilteredRoomList(Predicate<Room> predicate) {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
+    ObservableList<Room> getFilteredRoomList();
+
+    void updateFilteredRoomList(Predicate<Room> predicate);
 
     boolean hasStudentId(StudentId studentId);
 
@@ -114,7 +106,11 @@ public interface Model {
 
     boolean hasEquipment(Equipment equipment);
 
+    boolean hasEquipmentName(Equipment equipment);
+
     void addEquipment(Equipment equipment);
+
+    void setEquipment(Equipment target, Equipment editedEquipment);
 
     void deleteEquipment(Equipment target);
 

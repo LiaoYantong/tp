@@ -31,7 +31,7 @@ public class DeleteRoomCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteRoom(roomToDelete);
 
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, false, true, false);
 
         assertCommandSuccess(deleteRoomCommand, model, expectedCommandResult, expectedModel);
     }
@@ -46,7 +46,6 @@ public class DeleteRoomCommandTest {
 
     @Test
     public void execute_bookedRoom_throwsCommandException() {
-        // Create a room with a UNIQUE name that isn't in TypicalRooms
         Room bookedRoom = new RoomBuilder()
                 .withName("Unique-Room-999")
                 .withStatus("Booked")
@@ -66,20 +65,15 @@ public class DeleteRoomCommandTest {
         DeleteRoomCommand deleteFirstCommand = new DeleteRoomCommand(INDEX_FIRST_ROOM);
         DeleteRoomCommand deleteSecondCommand = new DeleteRoomCommand(INDEX_SECOND_ROOM);
 
-        // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
-        // same values -> returns true
         DeleteRoomCommand deleteFirstCommandCopy = new DeleteRoomCommand(INDEX_FIRST_ROOM);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
-        // different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
 
-        // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different room index -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

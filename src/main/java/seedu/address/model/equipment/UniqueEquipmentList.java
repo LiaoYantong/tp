@@ -28,6 +28,15 @@ public class UniqueEquipmentList implements Iterable<Equipment> {
     }
 
     /**
+     * Returns true if the list contains an equivalent equipment as the given argument.
+     */
+    public boolean containsName(Equipment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameEquipmentName);
+    }
+
+
+    /**
      * Adds an equipment to the list.
      * The equipment must not already exist in the list.
      */
@@ -61,6 +70,26 @@ public class UniqueEquipmentList implements Iterable<Equipment> {
         }
 
         internalList.setAll(replacement);
+    }
+
+    /**
+     * Replaces the equipment {@code target} in the list with {@code editedEquipment}.
+     * {@code target} must exist in the list.
+     */
+    public void setEquipment(Equipment target, Equipment editedEquipment) {
+        requireNonNull(target);
+        requireNonNull(editedEquipment);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EquipmentNotFoundException();
+        }
+
+        if (!target.isSameEquipment(editedEquipment) && contains(editedEquipment)) {
+            throw new DuplicateEquipmentException();
+        }
+
+        internalList.set(index, editedEquipment);
     }
 
     /**

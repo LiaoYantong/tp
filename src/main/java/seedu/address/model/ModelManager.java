@@ -169,6 +169,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireNonNull(target);
+        addressBook.setRoom(target, editedRoom);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    @Override
     public void deleteRoom(Room target) {
         target.onDelete();
         addressBook.removeRoom(target);
@@ -262,16 +269,29 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEquipmentName(Equipment equipment) {
+        requireNonNull(equipment);
+        return addressBook.hasEquipmentName(equipment);
+    }
+
+    @Override
     public void addEquipment(Equipment equipment) {
         addressBook.addEquipment(equipment);
-        updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
+        updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
+    }
+
+    @Override
+    public void setEquipment(Equipment target, Equipment editedEquipment) {
+        requireNonNull(target);
+        addressBook.setEquipment(target, editedEquipment);
+        updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
     }
 
     @Override
     public void deleteEquipment(Equipment target) {
         target.onDelete();
         addressBook.removeEquipment(target);
-        updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
+        updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
     }
 
     @Override
@@ -388,11 +408,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTaggable(Taggable target) {
         if (target instanceof Room targetRoom) {
-            return !hasRoom(targetRoom);
+            return hasRoom(targetRoom);
         } else if (target instanceof Equipment targetEquipment) {
-            return !hasEquipment(targetEquipment);
+            return hasEquipmentName(targetEquipment);
         } else {
-            return true;
+            return false;
         }
     }
 
@@ -412,7 +432,7 @@ public class ModelManager implements Model {
                     .findFirst()
                     .orElseThrow(() -> new AssertionError("Equipment not found: " + equipment.getName()));
             targetEquipment.addTag(tag);
-            updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
+            updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
         } else {
             throw new AssertionError("Unknown Taggable type: " + target.getClass());
         }
@@ -434,7 +454,7 @@ public class ModelManager implements Model {
                     .findFirst()
                     .orElseThrow(() -> new AssertionError("Equipment not found: " + equipment.getName()));
             targetEquipment.deleteTag(tag);
-            updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENT);
+            updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
         } else {
             throw new AssertionError("Unknown Taggable type: " + target.getClass());
         }

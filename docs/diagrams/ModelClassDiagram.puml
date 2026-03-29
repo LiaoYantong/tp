@@ -27,19 +27,32 @@ Class Phone
 Class StudentId
 Class Tag
 
-Class Equipment
-Class EquipmentName
-Class EquipmentStatus
+
 
 Class Reservation
 Class IssueRecord
 Class AliasMapping
+Class UniqueEquipmentList
+Class Equipment
+Class EquipmentName
+Class Category
+Class EquipmentStatus
+
+Class UniqueRoomList
+Class Room
+Class RoomName
+Class Location
+Class Status
+
 
 Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
+
+ReadOnlyAddressBook -[hidden]right-> Model
+Model -[hidden]right-> ReadOnlyUserPrefs
 
 AddressBook .up.|> ReadOnlyAddressBook
 
@@ -87,8 +100,41 @@ Address -[hidden]right-> Email
 Email -[hidden]right-> StudentId
 
 ModelManager --> "~* filtered" Person
+<<<<<<< HEAD
 ModelManager --> "~* filtered" Equipment
 ModelManager --> "~* all" Reservation
 ModelManager --> "~* all" IssueRecord
 ModelManager --> "~* all" AliasMapping
+=======
+
+'---Equipment Section---'
+AddressBook *--> "1" UniqueEquipmentList
+UniqueEquipmentList --> "~* all" Equipment
+Equipment *--> EquipmentName
+Equipment *--> Category
+Equipment *--> EquipmentStatus
+
+Equipment -[hidden]up--> I
+UniqueEquipmentList -[hidden]right-> I
+
+EquipmentName -[hidden]right-> Category
+Category -[hidden]right-> EquipmentStatus
+
+ModelManager --> "~* filtered" Equipment
+
+'---Room Section---'
+AddressBook *--> "1" UniqueRoomList
+UniqueRoomList --> "~* all" Room
+Room *--> RoomName
+Room *--> Location
+Room *--> Status
+
+Room -[hidden]up--> I
+UniqueRoomList -[hidden]right-> I
+
+RoomName -[hidden]right-> Location
+Location -[hidden]right-> Status
+
+ModelManager --> "~* filtered" Room
+>>>>>>> 71827d19da1cc60d223d6d98167c5e6dccc75c05
 @enduml

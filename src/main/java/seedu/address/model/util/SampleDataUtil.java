@@ -6,11 +6,18 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.equipment.Equipment;
+import seedu.address.model.equipment.EquipmentName;
+import seedu.address.model.equipment.EquipmentStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.room.Location;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomName;
+import seedu.address.model.room.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,22 +28,38 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new StudentId("A1234567A"),
                 new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
-                getTagSet("")),
+                getTagSet()),
             new Person(new Name("Bernice Yu"), new StudentId("A2345678B"),
                 new Phone("99272758"), new Email("berniceyu@u.nus.edu"),
-                getTagSet("")),
+                getTagSet()),
             new Person(new Name("Charlotte Oliveiro"), new StudentId("A3456789C"),
                 new Phone("93210283"), new Email("charlotte@u.nus.edu"),
-                getTagSet("")),
+                getTagSet()),
             new Person(new Name("David Li"), new StudentId("A4567890D"),
                 new Phone("91031282"), new Email("lidavid@u.nus.edu"),
-                getTagSet("")),
+                getTagSet()),
             new Person(new Name("Irfan Ibrahim"), new StudentId("A5678901E"),
                 new Phone("92492021"), new Email("irfan@u.nus.edu"),
-                getTagSet("")),
+                getTagSet()),
             new Person(new Name("Roy Balakrishnan"), new StudentId("A6789012F"),
                 new Phone("92624417"), new Email("royb@u.nus.edu"),
-                getTagSet(""))
+                getTagSet())
+        };
+    }
+
+    public static Room[] getSampleRooms() {
+        return new Room[] {new Room(new RoomName("MPSH-1"), new Location("Sports-Centre"), new Status("Available")),
+            new Room(new RoomName("Sports-Hall-1"), new Location("University-Town"), new Status("Booked")),
+            new Room(new RoomName("Outdoor-Tennis-Court"), new Location("Kent-Ridge"), new Status("Available")),
+            new Room(new RoomName("Music-Room-1"), new Location("YIH"), new Status("Booked"))
+        };
+    }
+
+    public static Equipment[] getSampleEquipments() {
+        return new Equipment[] {
+            new Equipment(new EquipmentName("Wilson-Evolution"), "Basketball", EquipmentStatus.AVAILABLE),
+            new Equipment(new EquipmentName("Molten-Volleyball"), "Volleyball", EquipmentStatus.MAINTENANCE),
+            new Equipment(new EquipmentName("Track-Stand"), "Track-and-Field", EquipmentStatus.BOOKED)
         };
     }
 
@@ -45,6 +68,15 @@ public class SampleDataUtil {
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+
+        for (Room sampleRoom : getSampleRooms()) {
+            sampleAb.addRoom(sampleRoom);
+        }
+
+        for (Equipment sampleEquipment : getSampleEquipments()) {
+            sampleAb.addEquipment(sampleEquipment);
+        }
+
         return sampleAb;
     }
 

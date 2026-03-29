@@ -125,6 +125,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    public void setRoom(Room target, Room editedRoom) {
+        requireNonNull(editedRoom);
+        rooms.setRoom(target, editedRoom);
+    }
+
     /**
      * Returns true if the address book contains a room with the same identity as {@code room}.
      */
@@ -214,6 +219,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if an equipment with the same name as {@code equipment} exists in the address book.
+     */
+    public boolean hasEquipmentName(Equipment equipment) {
+        requireNonNull(equipment);
+        return equipments.containsName(equipment);
+    }
+
+    /**
      * Adds an equipment to the address book.
      * The equipment must not already exist in the address book.
      */
@@ -223,7 +236,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
      */
     public void removeEquipment(Equipment key) {
         equipments.remove(key);
@@ -234,6 +246,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setEquipments(List<Equipment> equipments) {
         this.equipments.setEquipments(equipments);
+    }
+
+    /**
+     * Replaces the given equipment {@code target} in the list with {@code editedEquipment}.
+     */
+    public void setEquipment(Equipment target, Equipment editedEquipment) {
+        requireNonNull(editedEquipment);
+        equipments.setEquipment(target, editedEquipment);
     }
 
     @Override

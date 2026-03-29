@@ -47,7 +47,20 @@ public class AddStudentCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-            AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateStudentId_throwsCommandException() {
+        Person alice = new PersonBuilder().withName("Alice").withStudentId("A1234567Z").build();
+        // Bob has a different name but the same Student ID
+        Person bobWithSameId = new PersonBuilder().withName("Bob").withStudentId("A1234567Z").build();
+
+        AddStudentCommand addStudentCommand = new AddStudentCommand(bobWithSameId);
+        ModelStub modelStub = new ModelStubWithPerson(alice);
+
+        assertThrows(CommandException.class,
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
     }
 
     @Test
@@ -114,5 +127,15 @@ public class AddStudentCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+    }
+
+    @Test
+    public void toStringMethod() {
+        Person alice = new PersonBuilder().withName("Alice").build();
+        AddStudentCommand addStudentCommand = new AddStudentCommand(alice);
+
+        String expected = AddStudentCommand.class.getCanonicalName() + "{toAdd=" + alice + "}";
+
+        assertEquals(expected, addStudentCommand.toString());
     }
 }

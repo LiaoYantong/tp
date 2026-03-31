@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.equipment.Equipment;
+import seedu.address.model.equipment.EquipmentStatus;
 import seedu.address.testutil.TypicalEquipments;
 
 public class DeleteEquipmentCommandTest {
@@ -43,6 +44,25 @@ public class DeleteEquipmentCommandTest {
         DeleteEquipmentCommand deleteCommand = new DeleteEquipmentCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, MESSAGE_INVALID_EQUIPMENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_equipmentNotAvailable_throwsCommandException() {
+        Equipment firstEquipment = model.getFilteredEquipmentList().get(INDEX_FIRST_EQUIPMENT.getZeroBased());
+
+        Equipment maintenanceEquipment = new Equipment(
+                firstEquipment.getName(), "Basketball",
+                EquipmentStatus.MAINTENANCE,
+                firstEquipment.getTags());
+        model.setEquipment(firstEquipment, maintenanceEquipment);
+
+        DeleteEquipmentCommand deleteCommand = new DeleteEquipmentCommand(INDEX_FIRST_EQUIPMENT);
+
+        String expectedMessage = String.format(
+                "Equipment is currently %1$s. Only allow to be delete when it is 'Available'.",
+                maintenanceEquipment.getStatus());
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test

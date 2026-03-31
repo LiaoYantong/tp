@@ -19,7 +19,7 @@ public class ListEquipmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEquipmentList(PREDICATE_SHOW_ALL_EQUIPMENTS);
         return new CommandResult(MESSAGE_SUCCESS,
-                false, false, false, false, true);
+                false, false, true, true, true);
     }
 
     @Override

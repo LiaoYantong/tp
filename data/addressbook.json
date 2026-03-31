@@ -77,21 +77,13 @@
     "tags" : [ ]
   } ],
   "reservations" : [ ],
-  "issueRecords" : [ {
-    "itemId" : "WILSON-EVOLUTION-BASKETBALL-1",
-    "studentId" : "a3456789c",
-    "dueDateTime" : "2027-03-25 1700"
-  }, {
-    "itemId" : "MOLTEN-VOLLEYBALL",
-    "studentId" : "a3456789c",
-    "dueDateTime" : "2027-03-18 1200"
-  } ],
+  "issueRecords" : [ ],
   "aliasMappings" : [ ],
   "equipments" : [ {
     "name" : "Wilson-Evolution",
     "category" : "Basketball",
     "status" : "Available",
-    "tags" : [ "orange" ]
+    "tags" : [ "orange", "ICG" ]
   }, {
     "name" : "Molten-Volleyball",
     "category" : "Volleyball",
@@ -113,7 +105,7 @@
     "status" : "Booked",
     "tags" : [ ]
   }, {
-    "name" : "Li Ning",
+    "name" : "Li-Ning",
     "category" : "Badminton",
     "status" : "Booked",
     "tags" : [ ]

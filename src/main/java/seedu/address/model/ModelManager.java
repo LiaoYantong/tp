@@ -156,6 +156,14 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void updatePersonDisplay(StudentId studentId) {
+        getFilteredPersonList().stream()
+                .filter(p -> p.getStudentId().equals(studentId))
+                .findFirst()
+                .ifPresent(p -> setPerson(p, p));
+    }
+
     //=========== Room ================================================================================
 
     @Override

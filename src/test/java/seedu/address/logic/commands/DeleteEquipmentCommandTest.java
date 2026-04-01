@@ -59,7 +59,7 @@ public class DeleteEquipmentCommandTest {
         DeleteEquipmentCommand deleteCommand = new DeleteEquipmentCommand(INDEX_FIRST_EQUIPMENT);
 
         String expectedMessage = String.format(
-                "Equipment is currently %1$s. Only allow to be delete when it is 'Available'.",
+                "Equipment is currently %1$s. Only allowed to be deleted when it is 'Available'.",
                 maintenanceEquipment.getStatus());
 
         assertCommandFailure(deleteCommand, model, expectedMessage);

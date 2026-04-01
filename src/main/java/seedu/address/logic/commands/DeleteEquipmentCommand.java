@@ -42,7 +42,7 @@ public class DeleteEquipmentCommand extends Command {
 
         if (!equipmentToDelete.getStatus().toString().equalsIgnoreCase("Available")) {
             throw new CommandException(String.format(
-                    "Equipment is currently %1$s. Only allow to be delete when it is 'Available'.",
+                    "Equipment is currently %1$s. Only allowed to be deleted when it is 'Available'.",
                     equipmentToDelete.getStatus().toString()));
         }
 

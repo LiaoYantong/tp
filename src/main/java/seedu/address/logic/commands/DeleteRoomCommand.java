@@ -45,7 +45,7 @@ public class DeleteRoomCommand extends Command {
 
         if (!roomToDelete.getStatus().toString().equalsIgnoreCase("Available")) {
             throw new CommandException(String.format(
-                    "Room is currently %1$s. Only allow to be delete when it is 'Available'.",
+                    "Room is currently %1$s. Only allowed to be deleted when it is 'Available'.",
                     roomToDelete.getStatus().toString()));
         }
 

@@ -57,7 +57,7 @@ public class DeleteRoomCommandTest {
         DeleteRoomCommand deleteCommand = new DeleteRoomCommand(INDEX_FIRST_ROOM);
 
         String expectedMessage = String.format(
-                "Room is currently %1$s. Only allow to be delete when it is 'Available'.",
+                "Room is currently %1$s. Only allowed to be deleted when it is 'Available'.",
                 bookedRoom.getStatus());
 
         assertCommandFailure(deleteCommand, model, expectedMessage);

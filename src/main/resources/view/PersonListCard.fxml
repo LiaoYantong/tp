@@ -36,7 +36,7 @@
 
       <VBox spacing="5">
         <padding>
-            <Insets top="10" /> 
+            <Insets top="10" />
         </padding>
 
         <Label text="LOANS"
@@ -50,7 +50,7 @@
            </padding>
         </Separator>
 
-        <Label text="RESERVATIONS" 
+        <Label text="RESERVATIONS"
                   style="-fx-font-weight: bold; -fx-text-fill: #FFFFFF; -fx-font-size: 13px; -fx-padding: 0 0 0 0;" />
         <VBox fx:id="reservationsContainer" spacing="5" />
       </VBox>

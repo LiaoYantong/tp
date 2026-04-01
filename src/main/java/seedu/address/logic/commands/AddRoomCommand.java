@@ -20,8 +20,8 @@ public class AddRoomCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "MPSH-1 "
-            + PREFIX_LOCATION + "Sports Centre";
+            + PREFIX_NAME + "Sports-Hall-1 "
+            + PREFIX_LOCATION + "University-Town";
 
     public static final String MESSAGE_SUCCESS = "New Room Added:\nName: %1$s | Location: %2$s | Status: %3$s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the system!";

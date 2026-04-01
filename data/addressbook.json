@@ -37,11 +37,6 @@
     "tags" : [ ]
   } ],
   "rooms" : [ {
-    "name" : "Mpsh-1",
-    "location" : "Sports-Centre",
-    "status" : "Available",
-    "tags" : [ ]
-  }, {
     "name" : "Sports-Hall-1",
     "location" : "University-Town",
     "status" : "Available",

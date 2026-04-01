@@ -8,7 +8,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {
-    public static final String MESSAGE_CONSTRAINTS = "Locations should be alphanumeric and not empty.";
+    public static final String MESSAGE_CONSTRAINTS =
+            """
+            Location should only contain alphanumeric characters and hyphens (-),
+            no spaces allowed, and it should not be blank.
+            Example: l/University-Town""";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]+(-[\\p{Alnum}]+)*";
 
     public final String value;

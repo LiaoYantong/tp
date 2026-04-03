@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Location {
     public static final String MESSAGE_CONSTRAINTS =
             """
-            Location should only contain alphanumeric characters and hyphens (-),
-            no spaces allowed, and it should not be blank.
+            Location should only contain alphanumeric characters and single hyphens (-) in between,
+            no spaces or consecutive hyphens (--) are allowed, and it should not be blank.
             Example: l/University-Town""";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]+(-[\\p{Alnum}]+)*";
 

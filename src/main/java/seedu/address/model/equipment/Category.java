@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public class Category {
     public static final String MESSAGE_CONSTRAINTS =
             """
-                    Categories should only contain alphanumeric characters and hyphens (-),
-                    no spaces allowed, and it should not be blank.
+                    Categories should only contain alphanumeric characters and single hyphens (-) in between,
+                    no spaces or consecutive hyphens (--) are allowed, and it should not be blank.
                     Example: c/Basketball
                     """;
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]+(-[\\p{Alnum}]+)*";

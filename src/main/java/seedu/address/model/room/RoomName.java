@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class RoomName {
     public static final String MESSAGE_CONSTRAINTS =
             """
-            Room Name should only contain alphanumeric characters and hyphens (-),
-            no spaces allowed, and it should not be blank.
+            Room Name should only contain alphanumeric characters and single hyphens (-) in between,
+            no spaces or consecutive hyphens (--) are allowed, and it should not be blank.
             Example: n/Sports-Hall-1
             """;
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]+(-[\\p{Alnum}]+)*";

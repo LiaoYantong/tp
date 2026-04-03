@@ -13,7 +13,10 @@ public enum Status {
     MAINTENANCE;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be: Available, Booked, or Maintenance.";
+            """
+                    Status should be one of the following: Available, Booked, or Maintenance.
+                    Example: s/Available
+                    """;
 
     /**
      * Returns true if a given string is a valid status.

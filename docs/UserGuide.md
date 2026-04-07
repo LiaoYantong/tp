@@ -758,10 +758,6 @@ Possible errors:
 
 ### 2.6 System Utilities
 
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 #### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -824,12 +820,12 @@ Action | Format, Examples
 **List Students** | `list-s`
 **Delete Student** | `delete-s MATRIC_NUMBER` <br> e.g., `delete-s A0123456B`
 **Edit Student** | `edit-s INDEX [n/NAME] [p/PHONE] [e/EMAIL]` <br> e.g. `edit-s 2 n/Tom p/91234561 e/e1234567@u.nus.edu`
-**Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID [f/START_DATE_TIME] [t/END_DATE_TIME]` <br> e.g., `reserve Hall-2 a1234567a f/2026-03-01 1400 t/2026-03-01 1600`
-**Cancel** | `cancel ITEM_OR_ROOM_ID STUDENT_ID [f/START_DATE_TIME] [t/END_DATE_TIME]` <br> e.g., `cancel Hall-2 a1234567a f/2099-03-15 0900 t/2099-03-15 1100`
-**Issue** | `issue ITEM_ID STUDENT_ID [d/DUE_DATE_TIME]` <br> e.g., `issue Wilson-Basketball-1 A1203763K d/2026-03-05 1700`
+**Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME t/END_DATE_TIME` <br> e.g., `reserve Hall-2 a1234567a f/2026-03-01 1400 t/2026-03-01 1600`
+**Cancel** | `cancel ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME` <br> e.g., `cancel Hall-2 a1234567a f/2099-03-15 0900`
+**Issue** | `issue ITEM_ID STUDENT_ID DUE_DATE_TIME` <br> e.g., `issue Wilson-Basketball-1 A1203763K 2026-03-05 1700`
 **Return** | `return ITEM_ID` <br> e.g. `return Wilson-Evolution-Basketball-1`
-**Tag** | `tag [c/EQUIPMENT_NAME or l/ROOM_NAME] t/TAG` <br> e.g., `tag c/Basketball-1 t/spoilt`
-**Filter** | `filter [c/ or l/] t/TAG` <br> e.g., `filter l/ t/renovation`
+**Tag** | `tag c/EQUIPMENT_NAME or l/ROOM_NAME t/TAG` <br> e.g., `tag c/Wilson-Evolution t/ICG` <br> or  `tag l/Mpsh-1 t/IHG`
+**Filter** | `filter c/ or l/ t/TAG` <br> e.g., `filter c/ t/ICG` <br> or `filter l/ t/IHG`
 **Alias** | `alias ITEM_OR_ROOM_ID ALIAS_NAME` <br> e.g., `alias MPSH-1 hall1`
 **Clear** | `clear`
 **Exit** | `exit`

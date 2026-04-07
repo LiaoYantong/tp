@@ -298,9 +298,9 @@ any active filters (such as those from filter l/ t/TAG command), resetting the r
 * Room list has not been created.
 * Any extra input after `list-r`, (e.g, `list-r Sports-Hall`, `list-r YIH` etc.) will be invalid command.
 
-#### Delete a room : `delete-r`
+#### Delete a room from room list: `delete-r`
 
-Deletes a room equipment from the room list.
+Deletes a room from the room list.
 
 **Format:** `delete-r INDEX`
 

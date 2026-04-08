@@ -303,7 +303,7 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-                                                 
+
 | Priority | As a …​        | I want to …​                                                                    | So that  …​                                                                       |
 |---------|----------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | `* * *` | new user       | type help to see all the commands                                               | I don't have to ask my supervisor for help.                                           |
@@ -374,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. An equipment with the same name already exists.
     * 2a1. TrackMasterPro notifies the Facility Manager that a duplicate was found.
-    * 2a2. TrackMasterPro suggests a numbered name (e.g., Wilson-Evolution-1). 
+    * 2a2. TrackMasterPro suggests a numbered name (e.g., Wilson-Evolution-1).
     * Use case ends.
 
 
@@ -432,11 +432,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given index is invalid (out of bounds or not a positive integer).
-    * 1a1. TrackMasterPro shows an error message. 
+    * 1a1. TrackMasterPro shows an error message.
     * Use case resumes at step 1.
 
 * 1b. The Facility Manager provides an invalid command format or missing fields.
-    * 1b1. TrackMasterPro shows an error message and the correct command format. 
+    * 1b1. TrackMasterPro shows an error message and the correct command format.
     * Use case ends.
 
 * 1c. The equipment at the specified index has a "Booked" status.
@@ -711,7 +711,7 @@ Use case ends.
 * 5a. Item is not available
   * 5a1. System shows an error message
   * Use case ends
-  
+
 * 3a. Student not found
   * 3a1. System shows an error message
   * Use case ends
@@ -935,7 +935,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding an equipment with valid fields
 
    1. Test case: `add-e n/Wilson-Evolution c/Basketball`<br>
-      Expected: Equipment "Wilson-Evolution" added with category "Basketball". 
+      Expected: Equipment "Wilson-Evolution" added with category "Basketball".
       Status set to Available by default. Success message shows details.
 
    2. Test case: `add-e c/Badminton n/Yonex-Astrox`<br>
@@ -943,9 +943,8 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding equipment with invalid name or category
 
-   1. Test case: `add-e n/Yonex Astrox c/Badminton` (Contains space)<br> 
-      Expected: No equipment added. Error message indicates names/categories should only contain alphanumeric 
-      characters and single hyphens.
+   1. Test case: `add-e n/Yonex Astrox c/Badminton` (Contains space)<br>
+      Expected: No equipment added. Error message indicates names/categories should only contain alphanumeric characters and single hyphens.
 
    2. Test case: `add-e n/ c/Basketball` (Blank name)<br>
       Expected: Error details show name cannot be blank.
@@ -975,17 +974,13 @@ testers are expected to do more *exploratory* testing.
 ### Viewing the equipment list
 
 1. Listing equipment while the list is populated
-
-   1. Prerequisites: At least one equipment exists in the system and have run the filter tag command prior. 
-   
+   1. Prerequisites: At least one equipment exists in the system and have run the filter tag command prior.
    2. Test case: `list-e`<br>
       Expected: All filters are cleared. The full list of equipment is displayed in the equipment panel. 
       Status message indicates "Listed all equipment".
 
 2. Listing equipment when the equipment list is empty 
-
    1. Prerequisites: Delete all equipment using the delete-e command.
-
    2. Test case: `list-e`<br>
       Expected: Helpful message shows "Equipment list is currently empty. Use the 'add-e' command to add your first equipment".
 
@@ -996,7 +991,6 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `list-e 123`<br> 
       Expected: Similar to previous. Error details show that the command does not take any arguments.
-
 
 ### Removing an equipment (Status-Dependent)
 

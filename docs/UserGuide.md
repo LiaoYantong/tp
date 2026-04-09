@@ -18,7 +18,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
 1. TrackMasterPro runs on Java `17`. Check if you already have it installed in your Computer:<br>
 
    **Windows user:** Open the Start menu, search for `cmd` and open the **Command Prompt** app. Type `java -version` and press Enter. If you see Java `17`, you're good to go!
-   
+
    **Mac users:** Open the **Terminal** app. Type `java -version` and press Enter. If you see Java `17`, you're good to go!
 
    If Java `17` is not installed:
@@ -33,7 +33,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
 
 4. TrackMasterPro is launched from the **terminal**. Here's how to run it:
 
-   **Windows:** 
+   **Windows:**
    1. Locate your file: Open File Explorer and go to the folder where `TrackMasterPro.jar` is saved.
 
    2. Open the Terminal: Click on the address bar at the top of the window (where the folder path is shown), type `cmd`, and hit Enter. This opens the Command Prompt directly in that folder.
@@ -46,11 +46,11 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
    2. Navigate to the folder: Type `cd` followed by a space, then drag the folder containing the `.jar` file from Finder directly into the Terminal window. Hit **Enter**.
 
    3. Launch the App: Type the following command and press Enter: `java -jar TrackMasterPro.jar`
-   
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
    
-   5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will show all the command in the result box.
+   4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will show all the command in the result box.
    
    Some example commands you can try:
 
@@ -64,7 +64,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add-s n/NAME`, `NAME` is a parameter which can be used as `add n/John-Doe`.
+  e.g. in `add-s n/NAME`, `NAME` is a parameter which can be used as `add-s n/John-Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John-Doe t/friend` or as `n/John-Doe`.
@@ -332,7 +332,7 @@ Deletes a room from the room list.
 
 Edit details for existing room from the room list.
 
-**Format:** `edit-r INDEX [n/NAME] [c/LOCATION] [s/STATUS]`
+**Format:** `edit-r INDEX [n/NAME] [l/LOCATION] [s/STATUS]`
 
 **Acceptable values:**
 * `INDEX`: Positive integer corresponding to the current displayed list from `list-r`. (e.g `list-r` have a size of 4, valid index range would be 1,2,3, or 4)
@@ -374,7 +374,7 @@ Output of Name and Location will be title case -> `MPSH-1` will be `Mpsh-1` in t
 
 ### 2.3 Borrower Management
 
-#### Add a new student profile : `add-s`
+#### Adding a new student profile : `add-s`
 
 Adds a new student in the database so they can begin borrowing equipment or booking room/facility.
 
@@ -384,9 +384,7 @@ Adds a new student in the database so they can begin borrowing equipment or book
 * `NAME`: Alphabets and internal spaces only (e.g., `John Lim`). No special characters or numbers (e.g., `-`, `.`, `*`). The system trims any spaces at the very beginning or end of a name.
 * `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
 * `PHONE`: 8-digit mobile number (e.g `81234567`).
-* `EMAIL`:** Valid email format (e.g., `e0123456@u.nus.edu`). Case insensitive.
-* *Parameters can be in any order:*
-  e.g. if the command specifies `n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL`, `m/MATRIC_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL` is also acceptable.
+* `EMAIL`: Valid email format (e.g., `e0123456@u.nus.edu`). Case insensitive.
 
 **Duplicate handling:**
 * To ensure data integrity, each Student must have a unique `Matric Number`, `Phone Number`, and `Email`. If any of these are already registered to another student, the command will fail.
@@ -402,19 +400,19 @@ Adds a new student in the database so they can begin borrowing equipment or book
   ![AddStudentFailure.png](images/AddStudentFailure.png)
 
 **Possible errors:**
-* *Invalid command*: Missing any of `n/`, `m/`, `p`, `e` prefix.
+* *Invalid command*: Missing any of `n/`, `m/`, `p/`, `e/` prefix.
 * *Invalid name*: Hyphens `-`, periods `.`, and apostrophes `'`, numbers `1` in name will cause an error.
-* *Student already exists*: Attempting to add a student whose `Matric Number`, `Phone Number`, and `Email`are already in the system.
+* *Student already exists*: Attempting to add a student whose `Matric Number`, `Phone Number`, or `Email`are already in the system.
 
 #### Check a student's loans : `check-s`
 
-To check the list of equipment or venues loaned to a student.
+To check the list of equipment or rooms loaned to a student.
 
 **Format:** `check-s MATRIC_NUMBER`
 
 **Acceptable values:**
-* `MATRIC NUMBER`: Matric number must start with an alphabet followed by 7 digits and end with an alphabet.
-* *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the matric number. 
+* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
+* *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the same matric number.
 
 
 **Duplicate handling:**
@@ -431,8 +429,9 @@ To check the list of equipment or venues loaned to a student.
 
 **Possible errors:**
 * No matric number in the system.
+* Invalid matric number format.
 
-#### Display all students : `list-s`
+#### View student list : `list-s`
 
 Displays a list of all registered students in the system.
 
@@ -445,7 +444,7 @@ Displays a list of all registered students in the system.
 * Not applicable for a view command.
 
 **Examples:**
-* `list-e`.
+* `list-s`.
 
 **Outputs:**
 * Success
@@ -454,7 +453,7 @@ Displays a list of all registered students in the system.
 **Possible errors:**
 * Any extra input after `list-s`, (e.g. `list-s 1`, `list-e a` etc.) will be invalid command.
 
-#### Delete a student's profile : `delete-s`
+#### Delete student from student list : `delete-s`
 
 Deletes a student’s record from the system database.
 
@@ -462,7 +461,7 @@ Deletes a student’s record from the system database.
 
 **Acceptable values:**
 * `MATRIC_NUMBER`: A 9-character identifier. Must start with an alphabet (usually 'A'), followed by 7 digits, and end with an alphabet (e.g., `A0123456B`).
-* *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the matric number. 
+* *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the matric number.
 
 **Examples:**
 * `delete-s A0123456B`
@@ -485,7 +484,7 @@ A student profile **cannot be deleted** if there are outstanding records.
 Please ensure all borrowed items are returned and all upcoming reservations are cancelled before attempting to remove the student.
 </div>
 
-#### Edit student's details : `edit-s`
+#### Edit student from student list : `edit-s`
 
 Edits an existing student's details in the address book.
 
@@ -496,10 +495,9 @@ Edits an existing student's details in the address book.
 * Fields: At least one field must be provided.
 * (With at least one of the fields)
     * `NAME`: Alphabets and internal spaces only (e.g., `John Lim`). No special characters or numbers (e.g., `-`, `.`, `*`).
-    * `MATRIC_NUMBER`: 9 characters, starting and ending with a letter (e.g., `A1234567X`). Case-insensitive.
-    * `PHONE_NUMBER`: 8-digit continuous Singaporean mobile number.
+    * `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
+    * `PHONE_NUMBER`: 8-digit mobile number (e.g `81234567`).
     * `EMAIL`: Valid email format (e.g., `e0123456@u.nus.edu`).
-* *Parameters can be in any order*: e.g., `p/` can come before `n/`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Important:**
 You **cannot** edit any details of a student if they currently have an active equipment loan or a facility reservation.
@@ -517,7 +515,7 @@ You **cannot** edit any details of a student if they currently have an active eq
 ![EditStudentCommandMissingField.png](images/EditStudentCommandMissingField.png)
 
 * Student with existing loans/reservations
-![EditStudentCommandExistingLoan.png](images/EditStudentExistingLoan.png)
+![EditStudentCommandExistingLoan.png](images/EditStudentCommandExistingLoan.png)
 
 **Possible errors:**
 * Current student still has active loans or reservations linked to their current ID.
@@ -684,7 +682,7 @@ Aliases are useful for long item or room IDs, especially during busy periods whe
 * Alias already exists
 
 
-### 2.5 Tag & Filter:
+### 2.5 Tag & Filter
 
 #### Tagging an item or room: `tag`
 
@@ -821,6 +819,8 @@ Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected 
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **Strict Name Validation:** The current system only accepts alphabetic characters and spaces for student names. Names containing special characters such as hyphens (e.g., `Al-Haddad`) or apostrophes (e.g., `D'Souza`) will currently trigger a validation error.
+**Workaround**: Enter the name without the special character (e.g., `Al Haddad` or `DSouza`) until a future update expands the character support. Removing special characters from the requirements allows for faster command entry and fewer parsing errors during high-pressure facility management scenarios
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -840,7 +840,7 @@ Action | Format, Examples
 **Check Loans** | `check-s MATRIC_NUMBER` <br> e.g., `check-s A0123456B`
 **List Students** | `list-s`
 **Delete Student** | `delete-s MATRIC_NUMBER` <br> e.g., `delete-s A0123456B`
-**Edit Student** | `edit-s INDEX [n/NAME] [p/PHONE] [e/EMAIL]` <br> e.g. `edit-s 2 n/Tom p/91234561 e/e1234567@u.nus.edu`
+**Edit Student** | `edit-s INDEX [n/NAME] [m/MATRIC_NUMBER] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `edit-s 2 m/a1234567b n/Tom p/91234561 e/e1234567@u.nus.edu`
 **Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME t/END_DATE_TIME` <br> e.g., `reserve mpsh-1 a1234567a f/2027-03-01 1400 t/2027-03-01 1600`
 **Cancel** | `cancel ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME` <br> e.g., `cancel mpsh-1 a1234567a f/2099-03-15 0900`
 **Issue** | `issue ITEM_ID STUDENT_ID DUE_DATE_TIME` <br> e.g., `issue Wilson-Basketball-1 a1234567a 2027-03-05 1700`

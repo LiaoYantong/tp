@@ -757,6 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Use case ends
 
 **Use case: UC019 - Cancel Reservation**
+
 **MSS**
 
 1. User chooses to cancel a reservation.

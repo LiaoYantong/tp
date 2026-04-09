@@ -158,9 +158,9 @@ The Add Student command allows Facility Manager to record a new student profile 
 #### Implementation Details
 The implementation follows the **Command Pattern**, involving the following key components:
 
-`AddStudentCommandParser`: Responsible for parsing the user input and validating the presence of required prefixes.
-`AddStudentCommand`: Contains the execution logic, ensuring the student is unique before addition.
-`Person`: The entity that encapsulates student data (`Name`, `StudentId`, `Phone`, and `Email`).
+* `AddStudentCommandParser`: Responsible for parsing the user input and validating the presence of required prefixes.
+* `AddStudentCommand`: Contains the execution logic, ensuring the student is unique before addition.
+* `Person`: The entity that encapsulates student data (`Name`, `StudentId`, `Phone`, and `Email`).
 
 #### Design Considerations
 One of the noteworthy details in the implementation is the Defensive Validation in the execution stage:
@@ -171,8 +171,7 @@ One of the noteworthy details in the implementation is the Defensive Validation 
 
 #### Execution Workflow
 1. The Facility Manager enters a command as such:
-`add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu`
-
+`add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu`.
 2. `LogicManager` calls `AddressBookParser#parseCommand()`.
 3. An `AddStudentCommandParser` is instantiated to tokenize the arguments. The parser uses `ArgumentTokenizer` to verify that all required prefixes (`n/`, `m/`, `p/`, `e/`) are present.
 4. A `Person` object is created and wrapped inside a new `AddStudentCommand`.
@@ -855,7 +854,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User requests help for a specific command.
     * 1a1. System checks if the command exists.
-    
+
       * 1a1a. System detects that the specified command does not exist.
          * 1a1a1. System displays an error message indicating the command was not found.
          * Use case ends.
@@ -1160,16 +1159,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Delete a student by matric number
    1. Prerequisites: A student with ID A0123456B exists in the list.
-   2. Test case: `delete-s A0123456B`
+   2. Test case: `delete-s A0123456B`<br>
       Expected: The student is removed from the list. Success message confirms the deletion.
 
 2. Delete a non-existent student
-   1. Test case: `delete-s NON_EXISTENT_ID`
+   1. Test case: `delete-s NON_EXISTENT_ID`<br>
       Expected: No change to the data. Error message indicates the student was not found.
       
 3. Delete a student with existing loans/reservations
    1. Prerequisites: Student `A0123456B` currently has an equipment (e.g. "Basketball-1") borrowed or reserved.
-   2. Test case: `delete-s A0123456B`
+   2. Test case: `delete-s A0123456B`<br>
       Expected: The student is not removed from the database. An error message saying student has active loans or reservations.
 
 ### Adding a tag
@@ -1285,38 +1284,38 @@ testers are expected to do more *exploratory* testing.
 
 1. Edit the phone number of an existing student
    1. Prerequisites: Student exists at INDEX 1
-   2. Test case: `edit-s 1 p/90001000`
+   2. Test case: `edit-s 1 p/90001000`<br>
       Expected: The phone number for John Doe updates to 90001000. Other details remain unchanged.
 
 2. Edit a student with existing loans/reservations
    1. Prerequisites: Student at INDEX 1 has an active reservation.
-   2. Test case: `edit-s 1 p/99998888`
+   2. Test case: `edit-s 1 p/99998888`<br>
       Expected: The system rejects the edit. An error message saying student has active loans or reservations.
 
 3. Edit a student's details such that they collide with another student
    1. Prerequisites:
    * Student A at INDEX 1: Matric number `A0111111X`, Email `a@u.nus.edu`.
    * Student B at INDEX 2: Matric number `A0222222Y`, Email `b@u.nus.edu`.
-   2. Test case: `edit-s 1 e/b@u.nus.edu`
+   2. Test case: `edit-s 1 e/b@u.nus.edu`<br>
       Expected: The system rejects the edit. An error message saying another student already has the same field.
 
 ### Viewing a student list
-1. Test case: `list-s`
+1. Test case: `list-s`<br>
    Expected: The UI switches to the Student List view (if not already there) and displays all registered students.
 
 ### Checking a student's loans/reservations
 1. Prerequisites: Student `A0123456B` borrowed "Basketball-1".
-2. Test case: `check-s A0123456B`
+2. Test case: `check-s A0123456B`<br>
    Expected: Shows "Basketball-1" is currently borrowed by the student.
 
 ### Saving data
 
 1. Dealing with missing data files
    1. Prerequisites: Ensure addressbook.json does not exist in the `/data` folder.
-   2. Test case: Launch the app.
+   2. Test case: Launch the app.<br>
       Expected: App launches with default sample data. A new addressbook.json is created in the `/data` folder.
 
 2. Dealing with corrupted data files
    1. Prerequisites: Open `addressbook.json` in a text editor and delete a required brace `{` or change a field name to an invalid string.
-   2. Test case: Launch the app.
+   2. Test case: Launch the app.<br>
       Expected: App launches with an empty list (0 students, 0 equipment, 0 rooms). An error log is generated.

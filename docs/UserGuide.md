@@ -432,7 +432,7 @@ To check the list of equipment or rooms loaned to a student.
 **Format:** `check-s MATRIC_NUMBER`
 
 **Acceptable values:**
-* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g. `A0123456B`). Case insensitive.
+* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
 * *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the same matric number.
 
 
@@ -485,7 +485,7 @@ Deletes a student’s record from the system database.
 **Format:** `delete-s MATRIC_NUMBER`
 
 **Acceptable values:**
-* `MATRIC_NUMBER`: A 9-character identifier. Must start with an alphabet (usually 'A'), followed by 7 digits, and end with an alphabet (e.g. `A0123456B`).
+* `MATRIC_NUMBER`: A 9-character identifier. Must start with an alphabet (usually 'A'), followed by 7 digits, and end with an alphabet (e.g., `A0123456B`).
 * *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the matric number.
 
 **Examples:**
@@ -884,7 +884,7 @@ TrackMasterPro data is saved automatically as a JSON file `[JAR file location]/d
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TrackMasterPro will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected ways (e.g. if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -903,7 +903,7 @@ Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected 
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 3. **Strict Name Validation:** The current system only accepts alphabetic characters and spaces for student names. Names containing special characters such as hyphens (e.g., `Al-Haddad`) or apostrophes (e.g., `D'Souza`) will currently trigger a validation error.
-**Workaround**: Enter the name without the special character (e.g. `Al Haddad` or `DSouza`) until a future update expands the character support. Removing special characters from the requirements allows for faster command entry and fewer parsing errors during high-pressure facility management scenarios
+**Workaround**: Enter the name without the special character (e.g., `Al Haddad` or `DSouza`) until a future update expands the character support. Removing special characters from the requirements allows for faster command entry and fewer parsing errors during high-pressure facility management scenarios
 
 --------------------------------------------------------------------------------------------------------------------
 

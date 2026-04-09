@@ -916,7 +916,7 @@ Action | Format, Examples
 **Return** | `return ITEM_ID` <br> e.g. `return Wilson-Evolution-Basketball-1`
 **Tag** | `tag NAME TAG` <br> e.g., `tag-e Basketball-1 IHG or tag-r MPSH-1 IHG`
 **Untag** | `untag NAME TAG` <br> e.g., `untag-e Basketball-1 IHG or untag-r MPSH-1 IHG`
-**Filter** | `filter TAG` <br> e.g., `filter-e IHG or filter-rIHG`
+**Filter** | `filter TAG` <br> e.g., `filter-e IHG or filter-r IHG`
 **Alias** | `alias ITEM_OR_ROOM_ID ALIAS_NAME` <br> e.g., `alias MPSH-1 hall1`
 **Clear** | `clear`
 **Exit** | `exit`

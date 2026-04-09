@@ -252,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -1173,31 +1173,42 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `delete-s A0123456B`<br>
       Expected: The student is not removed from the database. An error message saying student has active loans or reservations.
 
+
 ### Editing a student
 
 1. Edit the phone number of an existing student
-  1. Prerequisites: Student exists at INDEX 1
-  2. Test case: `edit-s 1 p/90001000`<br>
-     Expected: The phone number for John Doe updates to 90001000. Other details remain unchanged.
+
+   1. Prerequisites: Student exists at INDEX 1.
+
+   2. Test case: `edit-s 1 p/90001000`<br>
+      Expected: The phone number for John Doe updates to 90001000. Other details remain unchanged.
 
 2. Edit a student with existing loans/reservations
-  1. Prerequisites: Student at INDEX 1 has an active reservation.
-  2. Test case: `edit-s 1 p/99998888`<br>
-     Expected: The system rejects the edit. An error message saying student has active loans or reservations.
+
+   1. Prerequisites: Student at INDEX 1 has an active reservation.
+
+   2. Test case: `edit-s 1 p/99998888`<br>
+      Expected: The system rejects the edit. An error message saying student has active loans or reservations.
 
 3. Edit a student's details such that they collide with another student
-  1. Prerequisites:
-  * Student A at INDEX 1: Matric number `A0111111X`, Email `a@u.nus.edu`.
-  * Student B at INDEX 2: Matric number `A0222222Y`, Email `b@u.nus.edu`.
-  2. Test case: `edit-s 1 e/b@u.nus.edu`<br>
-     Expected: The system rejects the edit. An error message saying another student already has the same field.
+
+   1. Prerequisites:
+   * Student A at INDEX 1: Matric number `A0111111X`, Email `a@u.nus.edu`.
+   * Student B at INDEX 2: Matric number `A0222222Y`, Email `b@u.nus.edu`.
+
+   2. Test case: `edit-s 1 e/b@u.nus.edu`<br>
+      Expected: The system rejects the edit. An error message saying another student already has the same field.
 
 ### Viewing a student list
+
 1. Test case: `list-s`<br>
+
    Expected: The UI switches to the Student List view (if not already there) and displays all registered students.
 
 ### Checking a student's loans/reservations
+
 1. Prerequisites: Student `A0123456B` borrowed "Basketball-1".
+
 2. Test case: `check-s A0123456B`<br>
    Expected: Shows "Basketball-1" is currently borrowed by the student.
 

@@ -50,7 +50,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
    
-   4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will show all the command in the result box.
+   4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will show all the command in the result box. <br>
    
    Some example commands you can try:
 
@@ -78,7 +78,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
   e.g. in `add-s n/NAME`, `NAME` is a parameter which can be used as `add-s n/John-Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John-Doe t/friend` or as `n/John-Doe`.
+  e.g `[t/TAG]` means `t/TAG` is an optional parameter.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…` can be used as many times (i.e. 0 times), `t/ICG`, `t/IFG t/CareerFest` etc.
@@ -399,10 +399,10 @@ Adds a new student in the database so they can begin borrowing equipment or book
 **Format:** `add-s n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL`
 
 **Acceptable values:**
-* `NAME`: Alphabets and internal spaces only (e.g., `John Lim`). No special characters or numbers (e.g., `-`, `.`, `*`). The system trims any spaces at the very beginning or end of a name.
-* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
+* `NAME`: Alphabets and internal spaces only (e.g. `John Lim`). No special characters or numbers (e.g. `-`, `.`, `*`). The system trims any spaces at the very beginning or end of a name. Case sensitive.
+* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g. `A0123456B`). Case insensitive.
 * `PHONE_NUMBER`: 8-digit mobile number (e.g `81234567`).
-* `EMAIL`: Valid email format (e.g., `e0123456@u.nus.edu`). Case insensitive.
+* `EMAIL`: Valid email format (e.g. `e0123456@u.nus.edu`). Case insensitive.
 
 **Duplicate handling:**
 * To ensure data integrity, each Student must have a unique `MATRIC_NUMBER`, `PHONE_NUMBER`, and `EMAIL`. If any of these are already registered to another student, the command will fail.
@@ -432,7 +432,7 @@ To check the list of equipment or rooms loaned to a student.
 **Format:** `check-s MATRIC_NUMBER`
 
 **Acceptable values:**
-* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
+* `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g. `A0123456B`). Case insensitive.
 * *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the same matric number.
 
 
@@ -485,17 +485,17 @@ Deletes a student’s record from the system database.
 **Format:** `delete-s MATRIC_NUMBER`
 
 **Acceptable values:**
-* `MATRIC_NUMBER`: A 9-character identifier. Must start with an alphabet (usually 'A'), followed by 7 digits, and end with an alphabet (e.g., `A0123456B`).
+* `MATRIC_NUMBER`: A 9-character identifier. Must start with an alphabet (usually 'A'), followed by 7 digits, and end with an alphabet (e.g. `A0123456B`).
 * *Case Sensitivity*: Case-insensitive. `A0123456B` and `a0123456b` are treated as the matric number.
 
 **Examples:**
 * `delete-s A0123456B`
 
-**Outputs:**
-Success:<br>
+**Outputs:** <br>
+* Success <br>
 ![DeleteStudentSuccess.png](images/DeleteStudentSuccess.png)
 
-Failure:
+* Failure
   * Student's matric number not found in system
   ![DeleteCommandFailure.png](images/DeleteCommandFailure.png)
   * Student with existing loans/reservations
@@ -523,10 +523,10 @@ Edits an existing student's details in the address book.
 * `INDEX`: Must be a positive integer `(1, 2, 3...)` as shown in the current displayed list.
 * Fields: At least one field must be provided.
 * (With at least one of the fields)
-    * `NAME`: Alphabets and internal spaces only (e.g., `John Lim`). No special characters or numbers (e.g., `-`, `.`, `*`).
-    * `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g., `A0123456B`). Case insensitive.
+    * `NAME`: Alphabets and internal spaces only (e.g. `John Lim`). No special characters or numbers (e.g. `-`, `.`, `*`).
+    * `MATRIC_NUMBER`: Must be exactly 9 characters long. Starts with a letter (usually 'A'), followed by 7 digits, and ends with a check letter. (e.g. `A0123456B`). Case insensitive.
     * `PHONE_NUMBER`: 8-digit mobile number (e.g `81234567`).
-    * `EMAIL`: Valid email format (e.g., `e0123456@u.nus.edu`).
+    * `EMAIL`: Valid email format (e.g. `e0123456@u.nus.edu`).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Important:**
 You **cannot** edit any details of a student if they currently have an active equipment loan or a facility reservation.
@@ -535,8 +535,8 @@ You **cannot** edit any details of a student if they currently have an active eq
 **Examples:**
 * `edit-s 2 n/Tom p/91234561 e/e1234567@u.nus.edu`.
 
-**Outputs**
-* Success<br>
+**Outputs:**
+* Success <br>
 ![EditStudentCommandSuccess.png](images/EditStudentCommandSuccess.png)
 
 * Failure
@@ -613,12 +613,11 @@ Cancels an **existing** reservation.
 **Example:**
 `cancel MPSH-1 a1234567a f/2027-03-10 0900`
 
-**Success**
-
+**Output:**
+* Success
 ![cancel command screenshot](images/cancelCommand.png)
 
-**Failure**
-
+* Failure
 ![failed cancel command screenshot](images/faliedCancelCommand.png)
 
 ---
@@ -708,15 +707,16 @@ Aliases are useful for long item or room IDs, especially during busy periods whe
 **Examples:**
 * `alias MPSH-1 hall1`
 
-**Success**
+**Outputs**
+* Success <br>
 ![alias command screenshot](images/aliasCommand.png)
 
-**Failure**
+* Failure <br>
 ![failed alias command screenshot](images/faliedAliasCommand.png)
 
 **Possible errors:**
 * Invalid `ITEM_OR_ROOM_ID`
-* Alias already exists
+* Alias already exists.
 
 ---
 
@@ -871,7 +871,7 @@ TrackMasterPro data is saved automatically as a JSON file `[JAR file location]/d
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TrackMasterPro will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected ways (e.g. if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -889,8 +889,8 @@ Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected 
 
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
-3. **Strict Name Validation:** The current system only accepts alphabetic characters and spaces for student names. Names containing special characters such as hyphens (e.g., `Al-Haddad`) or apostrophes (e.g., `D'Souza`) will currently trigger a validation error.
-**Workaround**: Enter the name without the special character (e.g., `Al Haddad` or `DSouza`) until a future update expands the character support. Removing special characters from the requirements allows for faster command entry and fewer parsing errors during high-pressure facility management scenarios
+3. **Strict Name Validation:** The current system only accepts alphabetic characters and spaces for student names. Names containing special characters such as hyphens (e.g. `Al-Haddad`) or apostrophes (e.g. `D'Souza`) will currently trigger a validation error.
+**Workaround**: Enter the name without the special character (e.g. `Al Haddad` or `DSouza`) until a future update expands the character support. Removing special characters from the requirements allows for faster command entry and fewer parsing errors during high-pressure facility management scenarios
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -898,27 +898,27 @@ Furthermore, certain edits can cause the TrackMasterPro to behave in unexpected 
 
 Action | Format, Examples
 --------|------------------
-**Add Equipment** | `add-e n/NAME c/CATEGORY` <br> e.g., `add-e n/Wilson-Evolution c/Basketball`
+**Add Equipment** | `add-e n/NAME c/CATEGORY` <br> e.g. `add-e n/Wilson-Evolution c/Basketball`
 **List Equipment** | `list-e`
-**Delete Equipment**| `delete-e INDEX` <br> e.g., `delete-e 3`
+**Delete Equipment**| `delete-e INDEX` <br> e.g. `delete-e 3`
 **Edit Equipment** | `edit-e INDEX [n/NAME] [c/CATEGORY] [s/STATUS]` <br> e.g. `edit-e 6 n/Wilson-Evo`
-**Add Room** | `add-r n/NAME l/LOCATION` <br> e.g., `add-r n/MPSH-2 l/Sports-Centre`
+**Add Room** | `add-r n/NAME l/LOCATION` <br> e.g. `add-r n/MPSH-2 l/Sports-Centre`
 **List Rooms** | `list-r`
-**Delete Room** | `delete-r INDEX` <br> e.g., `delete-r 1`
+**Delete Room** | `delete-r INDEX` <br> e.g. `delete-r 1`
 **Edit Room** | `edit-r INDEX [n/NAME] [l/LOCATION] [s/STATUS]` <br> e.g. `edit-r 3 n/Tennis-Court s/Maintenance`
-**Add Student** | `add-s n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL` <br> e.g., `add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu`
-**Check Loans** | `check-s MATRIC_NUMBER` <br> e.g., `check-s A0123456B`
+**Add Student** | `add-s n/NAME m/MATRIC_NUMBER p/PHONE_NUMBER e/EMAIL` <br> e.g. `add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu`
+**Check Loans** | `check-s MATRIC_NUMBER` <br> e.g. `check-s A0123456B`
 **List Students** | `list-s`
-**Delete Student** | `delete-s MATRIC_NUMBER` <br> e.g., `delete-s A0123456B`
+**Delete Student** | `delete-s MATRIC_NUMBER` <br> e.g. `delete-s A0123456B`
 **Edit Student** | `edit-s INDEX [n/NAME] [m/MATRIC_NUMBER] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `edit-s 2 m/a1234567b n/Tom p/91234561 e/e1234567@u.nus.edu`
-**Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME t/END_DATE_TIME` <br> e.g., `reserve mpsh-1 a1234567a f/2027-03-01 1400 t/2027-03-01 1600`
-**Cancel** | `cancel ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME` <br> e.g., `cancel mpsh-1 a1234567a f/2099-03-15 0900`
-**Issue** | `issue ITEM_ID STUDENT_ID DUE_DATE_TIME` <br> e.g., `issue Wilson-Basketball-1 a1234567a 2027-03-05 1700`
+**Reserve** | `reserve ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME t/END_DATE_TIME` <br> e.g. `reserve mpsh-1 a1234567a f/2027-03-01 1400 t/2027-03-01 1600`
+**Cancel** | `cancel ITEM_OR_ROOM_ID STUDENT_ID f/START_DATE_TIME` <br> e.g. `cancel mpsh-1 a1234567a f/2099-03-15 0900`
+**Issue** | `issue ITEM_ID STUDENT_ID DUE_DATE_TIME` <br> e.g. `issue Wilson-Basketball-1 a1234567a 2027-03-05 1700`
 **Return** | `return ITEM_ID` <br> e.g. `return Wilson-Evolution-Basketball-1`
-**Tag** | `tag NAME TAG` <br> e.g., `tag-e Basketball-1 IHG or tag-r MPSH-1 IHG`
-**Untag** | `untag NAME TAG` <br> e.g., `untag-e Basketball-1 IHG or untag-r MPSH-1 IHG`
-**Filter** | `filter TAG` <br> e.g., `filter-e IHG or filter-r IHG`
-**Alias** | `alias ITEM_OR_ROOM_ID ALIAS_NAME` <br> e.g., `alias MPSH-1 hall1`
+**Tag** | `tag NAME TAG` <br> e.g. `tag-e Basketball-1 IHG or tag-r MPSH-1 IHG`
+**Untag** | `untag NAME TAG` <br> e.g. `untag-e Basketball-1 IHG or untag-r MPSH-1 IHG`
+**Filter** | `filter TAG` <br> e.g. `filter-e IHG or filter-r IHG`
+**Alias** | `alias ITEM_OR_ROOM_ID ALIAS_NAME` <br> e.g. `alias MPSH-1 hall1`
 **Clear** | `clear`
 **Exit** | `exit`
 

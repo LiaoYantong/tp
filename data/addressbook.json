@@ -40,7 +40,7 @@
     "name" : "Sports-Hall-1",
     "location" : "University-Town",
     "status" : "Available",
-    "tags" : [ "pop" ]
+    "tags" : [ ]
   }, {
     "name" : "Tennis-Court",
     "location" : "Kent-Ridge",
@@ -73,12 +73,11 @@
     "studentId" : "a3456789c",
     "dueDateTime" : "2027-03-31 1300"
   } ],
-  "aliasMappings" : [ ],
   "equipments" : [ {
     "name" : "Wilson-Evolution",
     "category" : "Basketball",
     "status" : "Available",
-    "tags" : [ "pop" ]
+    "tags" : [ ]
   }, {
     "name" : "Mx-Volleyball",
     "category" : "Volleyball",

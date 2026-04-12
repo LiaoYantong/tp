@@ -56,7 +56,7 @@ During high-pressure periods such as the Inter-Hall Games (IHG), Inter-College G
 
    * `add-s n/John Doe m/A0123456B p/91234567 e/e0123456@u.nus.edu` : Adds a new student with the name `John Doe`, matric number `A0123456B`, phone number `91234567` and email address `e0123456@u.nus.edu`.
 
-   * `edit-r 3 n/Tennis-Court` : Edits the room in the second index of room list to a name `Tennis-Court`.
+   * `edit-r 3 n/Tennis-Court` : Edits the room in the third index of room list to a name `Tennis-Court`.
 
    * `add-r n/Outdoor-Basketball-Court l/Kent-Ridge` : Adds a new room with name `Outdoor-Basketball-Court`, location `Kent-Ridge`, and a `Available` status by default.
    

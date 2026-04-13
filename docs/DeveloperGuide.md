@@ -1586,6 +1586,9 @@ and normalise them into the nearest valid date.
 
 3. Alias of rooms and equipment will be available on the UI. 
 
+4. Allow student to reserve a room and equipment at the same timing. Currently, student reserving a room and equipment 
+at the same timing is not allowed due to reservation checking on time clashes.
+
 
 ### Saving data
 
